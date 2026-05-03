@@ -1,0 +1,16 @@
+.next
+node_modules
+out
+.codex
+.agents/
+.env*
+!.env.example
+!.env.production.example
+*.local.md
+config/*.local.json
+npm-debug.log*
+tsconfig.tsbuildinfo
+*:Zone.Identifier
+docs/.venv/
+docs/_build/
+docs/ideas/
