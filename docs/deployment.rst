@@ -33,8 +33,9 @@ Deployment Path
 .. mermaid::
 
    flowchart TD
-     Local["Local repo /home/diogo/repos/HomeAutomation"]
-     Rsync["rsync excluding docs, node_modules, .next, .git, config, real env files"]
+     Local["Local repo"]
+     Rsync["scripts/deploy-local-to-pi.sh"]
+     Pull["scripts/deploy-on-pi.sh"]
      PiPath["Pi /home/<PI_USER>/shogun-command"]
      EnvFile[".env.production"]
      Systemd["systemd shogun-command"]
@@ -42,6 +43,7 @@ Deployment Path
      Public["https://your-public-hostname.example.com"]
 
      Local --> Rsync --> PiPath
+     Local --> GitHub["GitHub origin/main"] --> Pull --> PiPath
      EnvFile --> Systemd
      PiPath --> Systemd
      Systemd --> Nginx --> Public
@@ -60,8 +62,8 @@ Base service:
 
    [Service]
    Type=simple
-   User=<PI_USER>@<PI_SSH_HOST>
-   Group=<PI_USER>@<PI_SSH_HOST>
+   User=<PI_USER>
+   Group=<PI_USER>
    WorkingDirectory=/home/<PI_USER>/shogun-command
    Environment=NODE_ENV=production
    Environment=PORT=3000
@@ -105,35 +107,64 @@ It must contain:
    AUTH_GOOGLE_SECRET=
    AUTH_ALLOWED_EMAILS=
 
-Deploy Current Local Files
---------------------------
+Deploy From Local Repo
+----------------------
 
 Documentation is not deployed to the Raspberry Pi. It stays in the local Git
-repository and GitHub.
+repository and GitHub by default.
 
 .. code-block:: bash
 
-   rsync -av \
-     --exclude docs \
-     --exclude node_modules \
-     --exclude .next \
-     --exclude .git \
-     --exclude config \
-     --exclude .env.local \
-     --exclude .env.production \
-     --exclude tsconfig.tsbuildinfo \
-     ./ <PI_USER>@<PI_SSH_HOST>@<PI_USER>@<PI_SSH_HOST>:/home/<PI_USER>/shogun-command/
+   PI_SSH=<PI_USER>@<PI_SSH_HOST> PI_APP_DIR=/home/<PI_USER>/shogun-command npm run deploy:local
 
-Build And Restart On Pi
------------------------
+Required variables:
+
+.. code-block:: text
+
+   PI_SSH=<PI_USER>@<PI_SSH_HOST>
+   PI_APP_DIR=/home/<PI_USER>/shogun-command
+
+The script intentionally has no public default for these values, so a public
+repo does not expose the private Pi username or hostname. Set them in your shell
+or a private local wrapper.
+
+Example:
 
 .. code-block:: bash
 
-   ssh <PI_USER>@<PI_SSH_HOST>@<PI_USER>@<PI_SSH_HOST>
+   PI_SSH=<PI_USER>@<PI_SSH_HOST> PI_APP_DIR=/home/<PI_USER>/shogun-command npm run deploy:local
+
+The local deploy script runs ``npx tsc --noEmit`` and ``npm run lint``, then
+syncs source to ``<PI_USER>@<PI_SSH_HOST>:/home/<PI_USER>/shogun-command/`` with these
+paths excluded:
+
+* ``docs/`` unless ``DEPLOY_DOCS=1`` is set.
+* ``node_modules/``
+* ``.next/``
+* ``.git/``
+* ``.env.local``
+* ``.env.production``
+* ``*.local.md``
+* ``config/*.local.json``
+* ``tsconfig.tsbuildinfo``
+
+Deploy From The Pi
+------------------
+
+Use this when the Pi already has the Git checkout and should pull from
+``origin/main`` itself.
+
+.. code-block:: bash
+
+   ssh <PI_USER>@<PI_SSH_HOST>
    cd /home/<PI_USER>/shogun-command
-   npm install
-   npm run build
-   sudo systemctl restart shogun-command
+   npm run deploy:pi
+
+The Pi deploy script runs ``git fetch``, ``git pull --ff-only origin main``,
+``npm ci``, ``npm run build``, restarts ``shogun-command``, and prints service
+status plus recent logs. It defaults ``PI_APP_DIR`` to the current directory
+when run on the Pi. Use ``PI_APP_DIR``, ``GIT_REMOTE``, or ``GIT_BRANCH`` to
+override runtime values.
 
 Enable Public Nginx Route
 -------------------------
@@ -168,6 +199,18 @@ The active Nginx proxy file should contain:
 
 Verification
 ------------
+
+After any deployment, confirm the process and logs:
+
+.. code-block:: bash
+
+   ssh <PI_USER>@<PI_SSH_HOST>
+   systemctl status shogun-command --no-pager -l
+   journalctl -u shogun-command -n 80 --no-pager
+
+Then open the dashboard and confirm the ``Updated`` timestamp advances about
+every five seconds. When authenticated, ``/api/system/health`` should report the
+Pi hostname because the API reads the machine running the Next.js process.
 
 .. test:: Public root redirects to login
    :id: TEST_PUBLIC_ROOT_REDIRECT

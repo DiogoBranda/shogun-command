@@ -2,8 +2,9 @@ Shogun Command Documentation
 ============================
 
 Shogun Command is a private Next.js mission-control dashboard for a Raspberry Pi
-<PI_USER>@<PI_SSH_HOST>. The public hostname is protected by application-level Google OAuth,
-with command pages and command APIs locked behind an allowlisted Google account.
+at ``<PI_USER>@<PI_SSH_HOST>``. The public hostname is protected by
+application-level Google OAuth, with command pages and command APIs locked
+behind an allowlisted Google account.
 
 .. toctree::
    :maxdepth: 2
@@ -13,6 +14,7 @@ with command pages and command APIs locked behind an allowlisted Google account.
    google-authentication
    deployment
    operations
+   codex-context
    requirements
 
 Quick Facts

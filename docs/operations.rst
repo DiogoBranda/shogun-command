@@ -73,6 +73,31 @@ Dependencies are missing locally:
 
    npm install
 
+Dashboard values do not update
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The dashboard polls live values every five seconds, but it only reads the
+machine running the Next.js process. If the browser is pointed at local
+development, it will show local machine state rather than Pi state.
+
+Check:
+
+.. code-block:: bash
+
+   ssh <PI_USER>@<PI_SSH_HOST>
+   systemctl status shogun-command --no-pager -l
+   journalctl -u shogun-command -n 80 --no-pager
+
+Then confirm:
+
+* the browser is using the Pi public URL, not ``http://localhost:3000``.
+* the browser session is authenticated so API polling is allowed.
+* the ``Updated`` timestamp advances about every five seconds.
+* the Pi network and system clock are healthy.
+* the latest deployment restarted ``shogun-command``.
+
+When authenticated, ``/api/system/health`` should return the Pi hostname.
+
 Build Notes
 -----------
 
