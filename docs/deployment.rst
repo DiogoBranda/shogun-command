@@ -113,6 +113,37 @@ Deploy From Local Repo
 Documentation is not deployed to the Raspberry Pi. It stays in the local Git
 repository and GitHub by default.
 
+One-time SSH setup
+~~~~~~~~~~~~~~~~~~
+
+The local deploy script uses ``rsync`` and ``ssh``. Set up SSH key
+authentication before running it, so deployment does not depend on repeated
+password prompts.
+
+Create a local key if needed:
+
+.. code-block:: bash
+
+   ssh-keygen -t ed25519 -C "shogun-command-deploy"
+
+Install the public key on the Pi:
+
+.. code-block:: bash
+
+   ssh-copy-id -i ~/.ssh/id_ed25519.pub <PI_USER>@<PI_SSH_HOST>
+
+Confirm non-interactive login works:
+
+.. code-block:: bash
+
+   ssh -o BatchMode=yes <PI_USER>@<PI_SSH_HOST> true
+
+This writes the local public key into the Pi user's ``authorized_keys`` file.
+Do not commit private keys, passwords, real usernames, or real hostnames.
+
+Local deploy steps
+~~~~~~~~~~~~~~~~~~
+
 .. code-block:: bash
 
    PI_SSH=<PI_USER>@<PI_SSH_HOST> PI_APP_DIR=/home/<PI_USER>/shogun-command npm run deploy:local
@@ -147,6 +178,12 @@ paths excluded:
 * ``*.local.md``
 * ``config/*.local.json``
 * ``tsconfig.tsbuildinfo``
+
+After syncing, the script opens an interactive SSH session with ``ssh -tt`` so
+remote ``sudo`` can prompt for a password if the Pi user does not have
+passwordless service management. It then runs ``npm ci``, ``npm run build``,
+``sudo systemctl restart shogun-command``, and prints service status plus recent
+logs.
 
 Deploy From The Pi
 ------------------
