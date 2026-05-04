@@ -52,6 +52,6 @@ echo "Syncing source to ${PI_SSH}:${PI_APP_DIR}/..."
 rsync -az --delete "${RSYNC_EXCLUDES[@]}" "${ROOT_DIR}/" "${PI_SSH}:${PI_APP_DIR}/"
 
 echo "Installing, building, and restarting on Pi..."
-ssh "${PI_SSH}" "cd '${PI_APP_DIR}' && npm ci && npm run build && sudo systemctl restart '${SERVICE_NAME}' && sudo systemctl status '${SERVICE_NAME}' --no-pager -l && sudo journalctl -u '${SERVICE_NAME}' -n 80 --no-pager"
+ssh -tt "${PI_SSH}" "cd '${PI_APP_DIR}' && npm ci && npm run build && sudo systemctl restart '${SERVICE_NAME}' && sudo systemctl status '${SERVICE_NAME}' --no-pager -l && sudo journalctl -u '${SERVICE_NAME}' -n 80 --no-pager"
 
 echo "Deploy complete."
