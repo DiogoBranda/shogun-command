@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start -H 127.0.0.1 -p 3000",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy:local": "scripts/deploy-local-to-pi.sh",
+    "deploy:pi": "scripts/deploy-on-pi.sh"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.2",

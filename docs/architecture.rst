@@ -56,6 +56,27 @@ Application Boundaries
    ``app/layout.tsx`` owns only HTML, body, fonts, and global styles. It does
    not render the command sidebar so ``/login`` can remain standalone.
 
+Live Refresh Model
+------------------
+
+The Mission Control dashboard is synced with the Raspberry Pi only when the
+Next.js process is running on the Pi. The browser polls same-origin API routes;
+those API routes read the machine that hosts the Next.js server.
+
+.. impl:: Dashboard live polling
+   :id: IMPL_DASHBOARD_LIVE_POLLING
+   :status: active
+   :owner: Codex
+
+   ``app/(command)/page.tsx`` performs the first authenticated server render.
+   ``app/(command)/system-dashboard.tsx`` then refreshes the live machine data
+   every five seconds by calling ``/api/system/health`` and
+   ``/api/system/services`` with ``cache: "no-store"``. The timestamp shown in
+   the dashboard comes from the latest health API response.
+
+This means local development at ``http://localhost:3000`` shows local machine
+state, while the public Pi deployment shows Pi state.
+
 Data Sources
 ------------
 
