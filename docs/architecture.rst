@@ -15,8 +15,8 @@ System Overview
      Next --> LocalState["Pi OS, services, filesystem"]
      Auth --> Google["Google OAuth"]
 
-.. spec:: Runtime topology
-   :id: SPEC_RUNTIME_TOPOLOGY
+.. arch:: Runtime topology
+   :id: ARCH_RUNTIME_TOPOLOGY
    :status: active
    :owner: Diogo
 
