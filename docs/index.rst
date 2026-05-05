@@ -11,6 +11,8 @@ behind an allowlisted Google account.
    :caption: Core Docs
 
    architecture
+   docs-process
+   features/index
    google-authentication
    deployment
    operations

@@ -4,23 +4,23 @@ Deployment
 Current Pi State
 ----------------
 
-.. spec:: Production hostname
-   :id: SPEC_PUBLIC_HOSTNAME
+.. arch:: Production hostname
+   :id: ARCH_PUBLIC_HOSTNAME
    :status: active
    :owner: Diogo
 
    ``https://your-public-hostname.example.com`` is the public Shogun Command hostname.
 
-.. spec:: Production process
-   :id: SPEC_PI_PROCESS
+.. arch:: Production process
+   :id: ARCH_PI_PROCESS
    :status: active
    :owner: Diogo
 
    The app runs as systemd service ``shogun-command`` from
    ``/home/<PI_USER>/shogun-command`` and listens on ``127.0.0.1:3000``.
 
-.. spec:: Production proxy
-   :id: SPEC_NGINX_PROXY
+.. arch:: Production proxy
+   :id: ARCH_NGINX_PROXY
    :status: active
    :owner: Diogo
 
@@ -253,7 +253,7 @@ Pi hostname because the API reads the machine running the Next.js process.
    :id: TEST_PUBLIC_ROOT_REDIRECT
    :status: active
    :owner: Diogo
-   :links: SPEC_PUBLIC_HOSTNAME, REQ_GOOGLE_AUTH
+   :links: ARCH_PUBLIC_HOSTNAME, REQ_GOOGLE_AUTH
 
    ``curl -I https://your-public-hostname.example.com`` should return ``307`` with location
    ``https://your-public-hostname.example.com/login?callbackUrl=%2F``.
@@ -262,7 +262,7 @@ Pi hostname because the API reads the machine running the Next.js process.
    :id: TEST_PUBLIC_LOGIN_200
    :status: active
    :owner: Diogo
-   :links: SPEC_PUBLIC_HOSTNAME
+   :links: ARCH_PUBLIC_HOSTNAME
 
    ``curl -I https://your-public-hostname.example.com/login`` should return ``200``.
 
