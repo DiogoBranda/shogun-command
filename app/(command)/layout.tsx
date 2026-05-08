@@ -1,10 +1,10 @@
 import type { ReactNode } from "react";
 import { redirect } from "next/navigation";
-import { auth } from "@/auth";
-import { MobileHeader, Sidebar } from "@/components/sidebar";
+import { getCommandSession } from "@/auth";
+import { MobileHeader, Sidebar } from "@/components/command/shell";
 
 export default async function CommandLayout({ children }: Readonly<{ children: ReactNode }>) {
-  const session = await auth();
+  const session = await getCommandSession();
 
   if (!session?.user) {
     redirect("/login");

@@ -21,7 +21,7 @@ export function Panel({
   return (
     <section
       className={cn(
-        "rounded-md border bg-bridge-panel/82 p-5 backdrop-blur-sm",
+        "min-w-0 rounded-md border bg-bridge-panel/82 p-5 backdrop-blur-sm",
         "before:pointer-events-none before:absolute",
         tones[tone],
         className

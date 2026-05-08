@@ -3,12 +3,13 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { Session } from "next-auth";
-import { Activity, LogOut, RadioTower, Shield, Users } from "lucide-react";
-import { signOutOfGoogle } from "@/components/auth/actions";
+import { Activity, ListChecks, LogOut, RadioTower, Shield, Users } from "lucide-react";
+import { signOutOfGoogle } from "@/features/security/google-authentication/actions";
 import { cn } from "@/lib/utils";
 
 const items = [
   { href: "/", label: "Mission", icon: RadioTower },
+  { href: "/tasks", label: "Tasks", icon: ListChecks },
   { href: "/team", label: "Team", icon: Users }
 ];
 
@@ -91,6 +92,8 @@ export function Sidebar({ user }: { user: ShellUser }) {
 }
 
 export function MobileHeader({ user }: { user: ShellUser }) {
+  const pathname = usePathname();
+
   return (
     <div className="sticky top-0 z-30 border-b border-bridge-line bg-bridge-hull/95 px-4 py-3 md:hidden">
       <div className="flex items-center justify-between">
@@ -109,6 +112,26 @@ export function MobileHeader({ user }: { user: ShellUser }) {
           <Activity className="h-5 w-5 text-bridge-mint" />
         </div>
       </div>
+      <nav className="mt-3 grid grid-cols-3 gap-2">
+        {items.map((item) => {
+          const Icon = item.icon;
+          const active = pathname === item.href;
+
+          return (
+            <Link
+              href={item.href}
+              key={item.href}
+              className={cn(
+                "flex items-center justify-center gap-2 rounded border px-2 py-2 text-xs font-bold uppercase text-slate-300",
+                active ? "border-bridge-bright bg-bridge-bright/12 text-white" : "border-bridge-line/60 bg-white/5"
+              )}
+            >
+              <Icon className="h-4 w-4" />
+              {item.label}
+            </Link>
+          );
+        })}
+      </nav>
     </div>
   );
 }

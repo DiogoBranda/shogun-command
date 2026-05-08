@@ -13,7 +13,6 @@ behind an allowlisted Google account.
    architecture
    docs-process
    features/index
-   google-authentication
    deployment
    operations
    codex-context

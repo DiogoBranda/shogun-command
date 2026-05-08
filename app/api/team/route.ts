@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getTeam } from "@/lib/team";
+import { getTeam } from "@/features/command/team-roster/server";
 
 export const dynamic = "force-dynamic";
 

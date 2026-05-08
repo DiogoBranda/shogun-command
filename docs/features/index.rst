@@ -16,8 +16,27 @@ new feature's ``index.rst`` to a domain or feature toctree; do not add the
 Feature Domains
 ---------------
 
-Add domain pages here as real feature documentation is introduced.
+Security
+~~~~~~~~
 
 .. toctree::
    :maxdepth: 2
-   :caption: Domains
+
+   security/google-authentication/index
+
+Operations
+~~~~~~~~~~
+
+.. toctree::
+   :maxdepth: 2
+
+   operations/system-health/index
+   operations/workspace-discovery/index
+
+Command
+~~~~~~~
+
+.. toctree::
+   :maxdepth: 2
+
+   command/team-roster/index

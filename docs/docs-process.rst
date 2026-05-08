@@ -17,7 +17,7 @@ Feature documentation lives under a domain and feature folder:
      overview.inc
      architecture.inc
      implementation.inc
-     traceability.inc
+     tests.inc
 
 The ``index.rst`` file is the only page added to a toctree. It owns the title,
 a short feature introduction, and includes the ``.inc`` files in reading order.
@@ -39,15 +39,15 @@ Feature Sections
    Explains how the feature is implemented in practical engineering language.
    This is intentionally not a low-level technical requirements section.
 
-``traceability.inc``
-   Shows meaningful Sphinx Needs links between scenarios, use cases,
-   requirements, architecture notes, implementation notes, and tests.
+``tests.inc``
+   Describes validation scenarios and stores the feature-level ``TEST_``
+   objects that prove externally visible behavior.
 
-Traceability Rules
-------------------
+Linking Rules
+-------------
 
-Use traceability at feature level. Every feature should link the important
-objects that explain why the code exists and how it is validated, but not every
+Use links at feature level. Every feature should connect the important objects
+that explain why the code exists and how it is validated, but not every
 paragraph needs a formal Sphinx Needs object.
 
 Use stable IDs with the configured prefixes:
@@ -71,7 +71,7 @@ When a change introduces or significantly changes a feature:
   change.
 * Update implementation notes when the explanation would help a future human or
   agent maintain the feature.
-* Update traceability links when scenarios, requirements, implementation notes,
-  or tests are added or removed.
+* Update tests and links when scenarios, requirements, architecture notes, or
+  validation checks are added or removed.
 * Keep private usernames, hostnames, tokens, passwords, and local-only notes out
   of tracked documentation.

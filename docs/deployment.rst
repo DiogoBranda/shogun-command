@@ -253,7 +253,7 @@ Pi hostname because the API reads the machine running the Next.js process.
    :id: TEST_PUBLIC_ROOT_REDIRECT
    :status: active
    :owner: Diogo
-   :links: ARCH_PUBLIC_HOSTNAME, REQ_GOOGLE_AUTH
+   :links: ARCH_PUBLIC_HOSTNAME, REQ_GAUTH_PROTECTED_PAGES, REQ_GAUTH_CALLBACK_PRESERVED
 
    ``curl -I https://your-public-hostname.example.com`` should return ``307`` with location
    ``https://your-public-hostname.example.com/login?callbackUrl=%2F``.
@@ -270,7 +270,7 @@ Pi hostname because the API reads the machine running the Next.js process.
    :id: TEST_PUBLIC_API_401
    :status: active
    :owner: Diogo
-   :links: IMPL_AUTH_MIDDLEWARE
+   :links: REQ_GAUTH_API_REJECTS_ANONYMOUS
 
    ``curl -i https://your-public-hostname.example.com/api/system/health`` should return
    ``401`` and JSON ``{"error":"Authentication required"}``.

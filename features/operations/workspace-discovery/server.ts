@@ -1,7 +1,8 @@
 import { existsSync, readdirSync, statSync } from "fs";
 import { join } from "path";
 import { getConfig } from "@/lib/config";
-import type { WorkspaceDiscovery, WorkspaceEntry } from "@/lib/types";
+import { e2eWorkspace, useE2eFixtures } from "@/features/testing/e2e-fixtures";
+import type { WorkspaceDiscovery, WorkspaceEntry } from "./types";
 
 function safeEntry(label: string, path: string): WorkspaceEntry {
   try {
@@ -41,6 +42,10 @@ function safeEntry(label: string, path: string): WorkspaceEntry {
 }
 
 export function discoverWorkspace(): WorkspaceDiscovery {
+  if (useE2eFixtures()) {
+    return e2eWorkspace;
+  }
+
   const config = getConfig();
   const roots = config.workspaceRoots.map((root) => safeEntry(root.label, root.path));
   const candidates = roots.flatMap((root) => {

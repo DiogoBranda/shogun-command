@@ -13,4 +13,4 @@ story.
 
 .. include:: implementation.inc
 
-.. include:: traceability.inc
+.. include:: tests.inc
