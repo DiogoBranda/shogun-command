@@ -11,7 +11,8 @@ behind an allowlisted Google account.
    :caption: Core Docs
 
    architecture
-   google-authentication
+   docs-process
+   features/index
    deployment
    operations
    codex-context

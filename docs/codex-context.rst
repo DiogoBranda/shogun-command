@@ -9,8 +9,9 @@ to an initial server render plus a client polling layer. The current behavior is
 
 * ``app/(command)/page.tsx`` gathers the initial system, service, and workspace
   state on the server.
-* ``app/(command)/system-dashboard.tsx`` owns the interactive dashboard and
-  polls ``/api/system/health`` and ``/api/system/services`` every five seconds.
+* ``features/operations/system-health/components/system-dashboard.tsx`` owns
+  the interactive dashboard and polls ``/api/system/health`` and
+  ``/api/system/services`` every five seconds.
 * The APIs read the machine running the Next.js process. A local dev server
   reports local machine state; the Pi deployment reports Pi state.
 

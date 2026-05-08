@@ -7,6 +7,10 @@
     "build": "next build",
     "start": "next start -H 127.0.0.1 -p 3000",
     "lint": "next lint",
+    "test:ui": "playwright test",
+    "test:ui:update": "playwright test --update-snapshots",
+    "docs:build": "docs/.venv/bin/sphinx-build -b html -d docs/_build/doctrees docs docs/_build/html",
+    "docs:publish": "scripts/publish-docs-gh-pages.sh",
     "deploy:local": "scripts/deploy-local-to-pi.sh",
     "deploy:pi": "scripts/deploy-on-pi.sh"
   },
@@ -22,6 +26,7 @@
     "tailwind-merge": "^2.6.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.51.1",
     "@types/node": "^22.10.5",
     "@types/react": "^19.0.4",
     "@types/react-dom": "^19.0.2",

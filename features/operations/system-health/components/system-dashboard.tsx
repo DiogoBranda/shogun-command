@@ -2,8 +2,9 @@
 
 import { Activity, AlertTriangle, Database, HardDrive, RadioTower, Server } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
-import { Metric, Panel, SectionLabel, StatusPill } from "@/components/panel";
-import type { ServiceState, SystemHealth, WorkspaceDiscovery } from "@/lib/types";
+import { Metric, Panel, SectionLabel, StatusPill } from "@/components/ui/panel";
+import type { ServiceState, SystemHealth } from "@/features/operations/system-health/types";
+import type { WorkspaceDiscovery } from "@/features/operations/workspace-discovery/types";
 
 type SystemDashboardProps = {
   initialHealth: SystemHealth;
@@ -107,8 +108,8 @@ export function SystemDashboard({
       <header className="flex flex-col gap-4 border-b border-bridge-line/70 pb-6 lg:flex-row lg:items-end lg:justify-between">
         <div>
           <SectionLabel>Operational Deck</SectionLabel>
-          <h1 className="mt-3 flex items-center gap-3 text-4xl font-black text-white md:text-5xl">
-            <RadioTower className="h-9 w-9 text-bridge-bright" />
+          <h1 className="mt-3 flex items-center gap-3 text-3xl font-black text-white sm:text-4xl md:text-5xl">
+            <RadioTower className="h-8 w-8 text-bridge-bright md:h-9 md:w-9" />
             Mission Control
           </h1>
           <p className="mt-3 max-w-3xl text-slate-300">
@@ -119,7 +120,7 @@ export function SystemDashboard({
         <StatusPill label={health.status} status={health.status} />
       </header>
 
-      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+      <div data-testid="mission-metric-grid" className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         <Metric label="Host" value={health.hostname} detail={`${health.platform}/${health.arch}`} />
         <Metric label="Uptime" value={formatUptime(health.uptimeSeconds)} detail={`${health.cpuCount} CPU threads`} />
         <Metric label="Memory" value={`${health.memory.usedPercent}%`} detail={`${formatBytes(health.memory.used)} used`} />

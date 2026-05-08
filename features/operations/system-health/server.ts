@@ -2,7 +2,8 @@ import { execFile } from "child_process";
 import { existsSync, readFileSync } from "fs";
 import os from "os";
 import { promisify } from "util";
-import type { HealthStatus, ServiceState, SystemHealth } from "@/lib/types";
+import { e2eServices, e2eSystemHealth, useE2eFixtures } from "@/features/testing/e2e-fixtures";
+import type { HealthStatus, ServiceState, SystemHealth } from "./types";
 
 const execFileAsync = promisify(execFile);
 
@@ -49,6 +50,10 @@ function temperature() {
 }
 
 export async function getSystemHealth(): Promise<SystemHealth> {
+  if (useE2eFixtures()) {
+    return e2eSystemHealth;
+  }
+
   const total = os.totalmem();
   const free = os.freemem();
   const used = total - free;
@@ -88,6 +93,10 @@ export async function getSystemHealth(): Promise<SystemHealth> {
 }
 
 export async function getServices(names: string[]): Promise<ServiceState[]> {
+  if (useE2eFixtures()) {
+    return e2eServices;
+  }
+
   return Promise.all(
     names.map(async (name) => {
       try {

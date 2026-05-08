@@ -15,8 +15,8 @@ System Overview
      Next --> LocalState["Pi OS, services, filesystem"]
      Auth --> Google["Google OAuth"]
 
-.. spec:: Runtime topology
-   :id: SPEC_RUNTIME_TOPOLOGY
+.. arch:: Runtime topology
+   :id: ARCH_RUNTIME_TOPOLOGY
    :status: active
    :owner: Diogo
 
@@ -37,7 +37,7 @@ Application Boundaries
      Middleware["middleware.ts"] --> PublicLogin
      Middleware --> CommandLayout
      Middleware --> ApiRoutes["app/api/*"]
-     AuthConfig["auth.ts"] --> Middleware
+     AuthConfig["features/security/google-authentication/auth.ts"] --> Middleware
      AuthConfig --> AuthRoute["app/api/auth/[...nextauth]/route.ts"]
 
 .. impl:: Protected route group
@@ -69,10 +69,11 @@ those API routes read the machine that hosts the Next.js server.
    :owner: Codex
 
    ``app/(command)/page.tsx`` performs the first authenticated server render.
-   ``app/(command)/system-dashboard.tsx`` then refreshes the live machine data
-   every five seconds by calling ``/api/system/health`` and
-   ``/api/system/services`` with ``cache: "no-store"``. The timestamp shown in
-   the dashboard comes from the latest health API response.
+   ``features/operations/system-health/components/system-dashboard.tsx`` then
+   refreshes the live machine data every five seconds by calling
+   ``/api/system/health`` and ``/api/system/services`` with
+   ``cache: "no-store"``. The timestamp shown in the dashboard comes from the
+   latest health API response.
 
 This means local development at ``http://localhost:3000`` shows local machine
 state, while the public Pi deployment shows Pi state.
@@ -82,9 +83,12 @@ Data Sources
 
 The dashboard reads live machine and workspace state rather than mock data:
 
-* ``lib/system.ts`` reads host, uptime, CPU, memory, disk, temperature, and service state.
-* ``lib/workspace.ts`` discovers configured filesystem roots and candidate documents.
-* ``lib/team.ts`` reads the local team configuration or default roster.
+* ``features/operations/system-health/server.ts`` reads host, uptime, CPU,
+  memory, disk, temperature, and service state.
+* ``features/operations/workspace-discovery/server.ts`` discovers configured
+  filesystem roots and candidate documents.
+* ``features/command/team-roster/server.ts`` reads the local team configuration
+  or default roster.
 * ``lib/config.ts`` creates and reads local generated config under ``config/``.
 
 Generated local config is ignored by Git because it can vary by machine.

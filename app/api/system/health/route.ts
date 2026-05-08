@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getSystemHealth } from "@/lib/system";
+import { getSystemHealth } from "@/features/operations/system-health/server";
 
 export const dynamic = "force-dynamic";
 

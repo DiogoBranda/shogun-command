@@ -1,8 +1,8 @@
 import { getConfigPath } from "@/lib/config";
-import { getSystemHealth, getServices } from "@/lib/system";
+import { getSystemHealth, getServices } from "@/features/operations/system-health/server";
 import { getConfig } from "@/lib/config";
-import { discoverWorkspace } from "@/lib/workspace";
-import { SystemDashboard } from "./system-dashboard";
+import { discoverWorkspace } from "@/features/operations/workspace-discovery/server";
+import { SystemDashboard } from "@/features/operations/system-health/components/system-dashboard";
 
 export const dynamic = "force-dynamic";
 

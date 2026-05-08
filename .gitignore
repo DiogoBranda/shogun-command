@@ -14,3 +14,6 @@ tsconfig.tsbuildinfo
 docs/.venv/
 docs/_build/
 docs/ideas/
+playwright-report/
+test-results/
+tests/ui/.auth/

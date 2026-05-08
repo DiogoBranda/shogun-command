@@ -1,8 +1,8 @@
 import { LockKeyhole, RadioTower, ShieldCheck } from "lucide-react";
 import { redirect } from "next/navigation";
-import { auth } from "@/auth";
-import { signInWithGoogle } from "@/components/auth/actions";
-import { Panel, SectionLabel } from "@/components/panel";
+import { getCommandSession } from "@/auth";
+import { signInWithE2ETest, signInWithGoogle } from "@/features/security/google-authentication/actions";
+import { Panel, SectionLabel } from "@/components/ui/panel";
 
 type LoginSearchParams = {
   callbackUrl?: string;
@@ -28,10 +28,11 @@ export default async function LoginPage({
 }: {
   searchParams?: Promise<LoginSearchParams>;
 }) {
-  const session = await auth();
+  const session = await getCommandSession();
   const params = (await searchParams) ?? {};
   const callbackUrl = safeCallbackUrl(params.callbackUrl);
   const errorMessage = getErrorMessage(params.error);
+  const e2eAuthEnabled = process.env.E2E_TEST_AUTH === "true";
 
   if (session?.user) {
     redirect(callbackUrl);
@@ -78,6 +79,19 @@ export default async function LoginPage({
               Continue With Google
             </button>
           </form>
+
+          {e2eAuthEnabled ? (
+            <form action={signInWithE2ETest}>
+              <input type="hidden" name="callbackUrl" value={callbackUrl} />
+              <button
+                type="submit"
+                className="flex w-full items-center justify-center gap-3 rounded-md border border-bridge-mint bg-bridge-mint/10 px-4 py-4 text-sm font-black uppercase tracking-[0.2em] text-white transition hover:bg-bridge-mint/20"
+              >
+                <LockKeyhole className="h-5 w-5" />
+                Continue With Test Login
+              </button>
+            </form>
+          ) : null}
 
           <div className="flex items-center gap-2 border-t border-bridge-line/70 pt-4 text-xs font-bold uppercase tracking-[0.18em] text-slate-400">
             <RadioTower className="h-4 w-4 text-bridge-bright" />

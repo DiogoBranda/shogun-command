@@ -1,6 +1,7 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
 import { dirname, join } from "path";
-import type { TeamManifest } from "@/lib/types";
+import { e2eTeam, useE2eFixtures } from "@/features/testing/e2e-fixtures";
+import type { TeamManifest } from "./types";
 
 const teamPath = join(process.cwd(), "config", "team.local.json");
 
@@ -79,6 +80,10 @@ const defaultTeam: Omit<TeamManifest, "source" | "checkedAt"> = {
 };
 
 export function getTeam(): TeamManifest {
+  if (useE2eFixtures()) {
+    return e2eTeam;
+  }
+
   try {
     if (!existsSync(teamPath)) {
       mkdirSync(dirname(teamPath), { recursive: true });
