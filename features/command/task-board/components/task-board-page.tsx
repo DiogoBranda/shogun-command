@@ -85,11 +85,13 @@ function TaskCard({ task }: { task: CommandTask }) {
 
 export function TaskBoardPage() {
   const manifest = getTasks();
+  const activeTasks = manifest.tasks.filter((task) => task.status !== "done");
+  const doneTasks = manifest.tasks.filter((task) => task.status === "done");
   const counts = {
     total: manifest.tasks.length,
-    active: manifest.tasks.filter((task) => task.lane === "now").length,
-    blocked: manifest.tasks.filter((task) => task.status === "blocked").length,
-    done: manifest.tasks.filter((task) => task.status === "done").length
+    active: activeTasks.filter((task) => task.lane === "now").length,
+    blocked: activeTasks.filter((task) => task.status === "blocked").length,
+    done: doneTasks.length
   };
 
   return (
@@ -127,7 +129,7 @@ export function TaskBoardPage() {
       </header>
 
       {lanes.map((lane) => {
-        const tasks = manifest.tasks.filter((task) => task.lane === lane.id);
+        const tasks = activeTasks.filter((task) => task.lane === lane.id);
 
         return (
           <section key={lane.id} className="space-y-4">
@@ -146,6 +148,24 @@ export function TaskBoardPage() {
           </section>
         );
       })}
+
+      {doneTasks.length ? (
+        <details className="group border-t border-bridge-line/70 pt-6">
+          <summary className="flex cursor-pointer list-none flex-col gap-2 border-b border-bridge-line/40 pb-3 marker:hidden md:flex-row md:items-end md:justify-between">
+            <div>
+              <SectionLabel>Done</SectionLabel>
+              <p className="mt-1 text-sm text-slate-400">Completed work kept out of the active queue.</p>
+            </div>
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-slate-500 group-open:hidden">{doneTasks.length} hidden tasks</span>
+            <span className="hidden text-xs font-bold uppercase tracking-[0.2em] text-slate-500 group-open:inline">{doneTasks.length} shown tasks</span>
+          </summary>
+          <div className="mt-4 grid gap-4 xl:grid-cols-2">
+            {doneTasks.map((task) => (
+              <TaskCard key={task.id} task={task} />
+            ))}
+          </div>
+        </details>
+      ) : null}
 
       <p className="break-all text-xs text-slate-500">Task source: {manifest.source}</p>
     </div>
