@@ -1,5 +1,6 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
 import { dirname, join } from "path";
+import { cloudmancerAgent } from "@/features/agents/research/cloudmancer/metadata";
 import { e2eTeam, useE2eFixtures } from "@/features/testing/e2e-fixtures";
 import type { TeamManifest } from "./types";
 
@@ -43,6 +44,7 @@ const defaultTeam: Omit<TeamManifest, "source" | "checkedAt"> = {
       callsign: "EYES",
       color: "blue"
     },
+    cloudmancerAgent,
     {
       id: "engineering",
       name: "Forge",

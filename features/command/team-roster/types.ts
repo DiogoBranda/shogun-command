@@ -9,6 +9,7 @@ export type TeamMember = {
   status: TeamHealthStatus;
   cadence: string;
   model?: string;
+  avatarImage?: string;
   callsign: string;
   color: string;
 };

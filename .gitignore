@@ -8,6 +8,7 @@ out
 !.env.production.example
 *.local.md
 config/*.local.json
+data/*.local.json
 npm-debug.log*
 tsconfig.tsbuildinfo
 *:Zone.Identifier

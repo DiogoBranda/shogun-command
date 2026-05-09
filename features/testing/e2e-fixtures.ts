@@ -1,6 +1,8 @@
 import type { TeamManifest } from "@/features/command/team-roster/types";
 import type { TaskManifest } from "@/features/command/task-board/types";
+import { cloudmancerAgent } from "@/features/agents/research/cloudmancer/metadata";
 import type { ServiceState, SystemHealth } from "@/features/operations/system-health/types";
+import type { WeatherBrief } from "@/features/operations/weather-brief/types";
 import type { WorkspaceDiscovery } from "@/features/operations/workspace-discovery/types";
 
 export function useE2eFixtures() {
@@ -52,15 +54,6 @@ export const e2eWorkspace: WorkspaceDiscovery = {
       modifiedAt: "2026-05-08T20:00:00.000Z"
     },
     {
-      label: "OpenClaw",
-      path: "/home/homelab/.openclaw",
-      exists: false,
-      type: "missing",
-      files: 0,
-      bytes: 0,
-      modifiedAt: null
-    },
-    {
       label: "Memory",
       path: "/home/homelab/memory",
       exists: false,
@@ -96,6 +89,48 @@ export const e2eWorkspace: WorkspaceDiscovery = {
     taskFiles: 1
   },
   checkedAt: "2026-05-08T20:49:05.000Z"
+};
+
+export const e2eWeatherBrief: WeatherBrief = {
+  agentId: "cloudmancer",
+  agentName: "Cloudmancer",
+  generatedAt: "2026-05-09T06:00:00.000Z",
+  forecastDate: "2026-05-09",
+  timezone: "Europe/Lisbon",
+  source: "Open-Meteo",
+  sourceUrl: "https://open-meteo.com/en/docs",
+  locations: [
+    {
+      id: "pacos-de-ferreira",
+      name: "Pacos de Ferreira",
+      condition: "Partly cloudy",
+      weatherCode: 2,
+      temperatureMaxC: 22.4,
+      temperatureMinC: 13.2,
+      precipitationProbabilityMaxPercent: 24,
+      precipitationSumMm: 0.6,
+      windSpeedMaxKmh: 16.8,
+      windGustsMaxKmh: 31.2,
+      sunrise: "2026-05-09T06:19",
+      sunset: "2026-05-09T20:42",
+      summary: "Partly cloudy. 13.2C to 22.4C, 24% rain chance, 0.6 mm rain, wind up to 16.8 km/h."
+    },
+    {
+      id: "porto",
+      name: "Porto",
+      condition: "Mainly clear",
+      weatherCode: 1,
+      temperatureMaxC: 21.1,
+      temperatureMinC: 14.5,
+      precipitationProbabilityMaxPercent: 18,
+      precipitationSumMm: 0.2,
+      windSpeedMaxKmh: 19.4,
+      windGustsMaxKmh: 35,
+      sunrise: "2026-05-09T06:18",
+      sunset: "2026-05-09T20:43",
+      summary: "Mainly clear. 14.5C to 21.1C, 18% rain chance, 0.2 mm rain, wind up to 19.4 km/h."
+    }
+  ]
 };
 
 export const e2eTeam: TeamManifest = {
@@ -136,6 +171,7 @@ export const e2eTeam: TeamManifest = {
       callsign: "EYES",
       color: "blue"
     },
+    cloudmancerAgent,
     {
       id: "engineering",
       name: "Forge",
