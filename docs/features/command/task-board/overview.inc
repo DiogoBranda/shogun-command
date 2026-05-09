@@ -48,6 +48,7 @@ Use Case
    * Real tasks are read from ``config/tasks.local.json``.
    * The public repository contains only the sanitized example schema.
    * Malformed task files are caught by a lightweight check.
+   * Completed tasks are archived away from active lanes.
    * The UI remains usable even if local task data is temporarily invalid.
 
 Functional Requirements
@@ -88,3 +89,13 @@ Functional Requirements
 
    If the local task file is missing or invalid, the task board must remain
    renderable using a built-in fallback task.
+
+.. req:: Task board archives completed tasks
+   :id: REQ_TASKBOARD_DONE_ARCHIVE
+   :status: active
+   :owner: Diogo
+   :links: UC_TASKBOARD_PRIVATE_QUEUE_UPKEEP
+
+   Tasks with ``status`` set to ``done`` must not appear in active lane
+   sections. They must appear only in a collapsible ``Done`` section after all
+   active lanes.

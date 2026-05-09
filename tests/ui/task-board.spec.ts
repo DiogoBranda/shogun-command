@@ -22,8 +22,16 @@ test.describe("Task Board", () => {
     await expect(page.getByRole("heading", { name: "Review public task example" })).toBeVisible();
     await expect(page.getByRole("heading", { name: "Resolve deployment credentials" })).toBeVisible();
     await expect(page.locator("span").filter({ hasText: /^blocked$/i })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Document task upkeep" })).toBeHidden();
+
+    const doneSection = page.locator("details").filter({ hasText: "Completed work kept out of the active queue." });
+    await expect(doneSection).toBeVisible();
+    await expect(doneSection.locator("summary")).toContainText("1 hidden tasks");
+    await doneSection.locator("summary").click();
+
     await expect(page.getByRole("heading", { name: "Document task upkeep" })).toBeVisible();
     await expect(page.locator("span").filter({ hasText: /^done$/i })).toBeVisible();
+    await expect(doneSection.locator("summary")).toContainText("1 shown tasks");
 
     await expect(page.getByRole("link", { name: /task docs/i })).toHaveAttribute("href", "/docs/features/command/task-board/");
   });

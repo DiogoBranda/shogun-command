@@ -37,6 +37,12 @@ file is missing, ``getTasks()`` creates a local fallback manifest. If parsing or
 validation fails, the server logs a short warning and returns the built-in
 fallback task instead of exposing task details or breaking the Tasks page.
 
+The page separates completed work before rendering. Tasks with ``status:
+done`` are excluded from the active lane sections even if their ``lane`` still
+points at ``now``, ``next``, ``later``, or ``ideas``. Completed tasks render at
+the end of the page inside a native collapsible ``Done`` section so old work is
+available for review without crowding the active board.
+
 Important Details
 ~~~~~~~~~~~~~~~~~
 
