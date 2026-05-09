@@ -1,0 +1,31 @@
+{
+  "tasks": [
+    {
+      "id": "example-active-task",
+      "title": "Ship the next focused improvement",
+      "status": "in_progress",
+      "priority": "high",
+      "area": "operations",
+      "lane": "now",
+      "summary": "A sanitized example task that shows the shape used by the private task board.",
+      "nextAction": "Replace this with the next concrete action for the local task.",
+      "links": [
+        {
+          "label": "Feature docs",
+          "href": "/docs/features/command/task-board/"
+        }
+      ]
+    },
+    {
+      "id": "example-idea",
+      "title": "Capture a future improvement idea",
+      "status": "idea",
+      "priority": "low",
+      "area": "research",
+      "lane": "ideas",
+      "summary": "Ideas can stay on the board before they are ready to become scheduled work.",
+      "nextAction": "Clarify the outcome before moving this into the active queue.",
+      "links": []
+    }
+  ]
+}

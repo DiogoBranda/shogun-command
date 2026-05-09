@@ -165,6 +165,13 @@ Example:
 
    PI_SSH=<PI_USER>@<PI_SSH_HOST> PI_APP_DIR=/home/<PI_USER>/shogun-command npm run deploy:local
 
+To deploy the private production-local configuration from this machine as well,
+opt in explicitly:
+
+.. code-block:: bash
+
+   DEPLOY_LOCAL_CONFIG=1 PI_SSH=<PI_USER>@<PI_SSH_HOST> PI_APP_DIR=/home/<PI_USER>/shogun-command npm run deploy:local
+
 The local deploy script runs ``npx tsc --noEmit`` and ``npm run lint``, then
 syncs source to ``<PI_USER>@<PI_SSH_HOST>:/home/<PI_USER>/shogun-command/`` with these
 paths excluded:
@@ -176,7 +183,7 @@ paths excluded:
 * ``.env.local``
 * ``.env.production``
 * ``*.local.md``
-* ``config/*.local.json``
+* ``config/*.local.json`` unless ``DEPLOY_LOCAL_CONFIG=1`` is set.
 * ``tsconfig.tsbuildinfo``
 
 After syncing, the script opens an interactive SSH session with ``ssh -tt`` so

@@ -162,6 +162,22 @@ type/lint issues from Next build internals:
    npm run lint
    npm run build
 
+Task Queue Upkeep
+-----------------
+
+Real task-board data lives in ``config/tasks.local.json`` and must remain
+private. ``config/tasks.example.json`` is the committed public schema example.
+
+After task edits, run:
+
+.. code-block:: bash
+
+   npm run tasks:check
+
+Keep ``nextAction`` current, keep active work in the ``now`` lane, and mark
+completed work ``done`` without copying private task details into committed
+files.
+
 Git Hygiene
 -----------
 

@@ -1,4 +1,5 @@
 import type { TeamManifest } from "@/features/command/team-roster/types";
+import type { TaskManifest } from "@/features/command/task-board/types";
 import type { ServiceState, SystemHealth } from "@/features/operations/system-health/types";
 import type { WorkspaceDiscovery } from "@/features/operations/workspace-discovery/types";
 
@@ -167,6 +168,62 @@ export const e2eTeam: TeamManifest = {
       cadence: "On demand",
       callsign: "BASE",
       color: "red"
+    }
+  ],
+  source: "e2e fixture",
+  checkedAt: "2026-05-08T20:49:05.000Z"
+};
+
+export const e2eTasks: TaskManifest = {
+  tasks: [
+    {
+      id: "e2e-task-now",
+      title: "Validate task board schema",
+      status: "in_progress",
+      priority: "critical",
+      area: "operations",
+      lane: "now",
+      summary: "Exercise the private task-board manifest shape with deterministic UI data.",
+      nextAction: "Run the task config check before deploying.",
+      links: [
+        {
+          label: "Task docs",
+          href: "/docs/features/command/task-board/"
+        }
+      ]
+    },
+    {
+      id: "e2e-task-next",
+      title: "Review public task example",
+      status: "todo",
+      priority: "high",
+      area: "docs",
+      lane: "next",
+      summary: "Confirm the public example remains sanitized and useful.",
+      nextAction: "Compare the example file with the documented schema.",
+      links: []
+    },
+    {
+      id: "e2e-task-blocked",
+      title: "Resolve deployment credentials",
+      status: "blocked",
+      priority: "medium",
+      area: "automation",
+      lane: "later",
+      summary: "A blocked fixture task keeps the blocked counter and warning state covered.",
+      nextAction: "Provide the missing deploy target before retrying.",
+      links: []
+    },
+    {
+      id: "e2e-task-done",
+      title: "Document task upkeep",
+      status: "done",
+      priority: "low",
+      area: "docs",
+      lane: "ideas",
+      summary: "A completed fixture task keeps the done counter covered.",
+      nextAction: "Keep completed work out of the active lane.",
+      links: []
     }
   ],
   source: "e2e fixture",

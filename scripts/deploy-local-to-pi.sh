@@ -5,6 +5,7 @@ PI_SSH="${PI_SSH:-}"
 PI_APP_DIR="${PI_APP_DIR:-}"
 SERVICE_NAME="${SERVICE_NAME:-shogun-command}"
 DEPLOY_DOCS="${DEPLOY_DOCS:-0}"
+DEPLOY_LOCAL_CONFIG="${DEPLOY_LOCAL_CONFIG:-0}"
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
@@ -33,11 +34,14 @@ RSYNC_EXCLUDES=(
   "--exclude=npm-debug.log*"
   "--exclude=tsconfig.tsbuildinfo"
   "--exclude=*:Zone.Identifier"
-  "--exclude=config/*.local.json"
   "--exclude=docs/.venv"
   "--exclude=docs/_build"
   "--exclude=docs/ideas"
 )
+
+if [[ "${DEPLOY_LOCAL_CONFIG}" != "1" ]]; then
+  RSYNC_EXCLUDES+=("--exclude=config/*.local.json")
+fi
 
 if [[ "${DEPLOY_DOCS}" != "1" ]]; then
   RSYNC_EXCLUDES+=("--exclude=docs")

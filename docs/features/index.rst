@@ -40,3 +40,4 @@ Command
    :maxdepth: 2
 
    command/team-roster/index
+   command/task-board/index
