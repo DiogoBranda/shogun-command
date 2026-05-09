@@ -26,3 +26,7 @@ sphinx-build -b html . _build/html
 Open `docs/_build/html/index.html`.
 
 Private planning notes and screenshots stay local under `docs/ideas/` and are not published.
+
+Private task data stays local in `config/tasks.local.json`, which is ignored by
+git. The committed `config/tasks.example.json` file documents the public task
+shape; run `npm run tasks:check` after editing either task file.
