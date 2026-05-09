@@ -15,7 +15,6 @@ const homeRoot = homedir();
 const defaultConfig: ShogunConfig = {
   workspaceRoots: [
     { label: "Home", path: homeRoot },
-    { label: "OpenClaw", path: join(homeRoot, ".openclaw") },
     { label: "Memory", path: join(homeRoot, "memory") },
     { label: "Workspace", path: join(homeRoot, "workspace") },
     { label: "Repos", path: join(homeRoot, "repos") }
@@ -24,7 +23,6 @@ const defaultConfig: ShogunConfig = {
     "MEMORY.md",
     "USER.md",
     "AGENTS.md",
-    "openclaw.json",
     "tasks.md",
     "TASKS.md",
     "schedule.md",

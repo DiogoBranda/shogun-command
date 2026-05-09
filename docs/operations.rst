@@ -7,9 +7,12 @@ Daily Checks
 .. code-block:: bash
 
    systemctl status shogun-command --no-pager -l
+   systemctl list-timers shogun-weather-agent.timer --no-pager
+   systemctl status shogun-weather-agent.service --no-pager -l
    systemctl status nginx --no-pager -l
    systemctl status cloudflared --no-pager -l
    journalctl -u shogun-command -n 100 --no-pager
+   journalctl -u shogun-weather-agent.service -n 80 --no-pager
 
 Public health checks:
 
@@ -149,6 +152,21 @@ Then confirm:
 
 When authenticated, ``/api/system/health`` should return the Pi hostname.
 
+Cloudmancer brief is missing or stale
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Mission Control reads the forecast from the private runtime file written by
+Cloudmancer every 30 minutes. If the dashboard shows the brief as missing or
+stale, check the timer and run the agent once:
+
+.. code-block:: bash
+
+   cd /home/<PI_USER>/shogun-command
+   npm run agent:weather
+   systemctl list-timers shogun-weather-agent.timer --no-pager
+   systemctl status shogun-weather-agent.service --no-pager -l
+   journalctl -u shogun-weather-agent.service -n 80 --no-pager
+
 Build Notes
 -----------
 
@@ -188,6 +206,7 @@ Never commit:
 * ``node_modules/``
 * ``.next/``
 * ``config/*.local.json``
+* ``data/*.local.json``
 * ``tsconfig.tsbuildinfo``
 
 After documentation or deployment edits:

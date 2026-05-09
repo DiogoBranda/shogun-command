@@ -31,6 +31,7 @@ RSYNC_EXCLUDES=(
   "--exclude=.env.local"
   "--exclude=.env.production"
   "--exclude=*.local.md"
+  "--exclude=data/*.local.json"
   "--exclude=npm-debug.log*"
   "--exclude=tsconfig.tsbuildinfo"
   "--exclude=*:Zone.Identifier"

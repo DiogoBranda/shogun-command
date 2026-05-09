@@ -1,15 +1,16 @@
 import { cn } from "@/lib/utils";
-import type { ReactNode } from "react";
+import type { HTMLAttributes, ReactNode } from "react";
 
 export function Panel({
   children,
   className,
-  tone = "blue"
+  tone = "blue",
+  ...props
 }: {
   children: ReactNode;
   className?: string;
   tone?: "blue" | "violet" | "mint" | "danger" | "amber";
-}) {
+} & HTMLAttributes<HTMLElement>) {
   const tones = {
     blue: "border-bridge-line/80 shadow-signal",
     violet: "border-bridge-violet/60 shadow-violet",
@@ -26,6 +27,7 @@ export function Panel({
         tones[tone],
         className
       )}
+      {...props}
     >
       {children}
     </section>

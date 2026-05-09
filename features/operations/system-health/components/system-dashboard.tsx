@@ -1,14 +1,16 @@
 "use client";
 
-import { Activity, AlertTriangle, Database, HardDrive, RadioTower, Server } from "lucide-react";
+import { Activity, AlertTriangle, CloudSun, Database, Droplets, HardDrive, RadioTower, Server, Wind } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { Metric, Panel, SectionLabel, StatusPill } from "@/components/ui/panel";
 import type { ServiceState, SystemHealth } from "@/features/operations/system-health/types";
+import type { WeatherBriefResponse } from "@/features/operations/weather-brief/types";
 import type { WorkspaceDiscovery } from "@/features/operations/workspace-discovery/types";
 
 type SystemDashboardProps = {
   initialHealth: SystemHealth;
   initialServices: ServiceState[];
+  initialWeather: WeatherBriefResponse;
   workspace: WorkspaceDiscovery;
   configPath: string;
 };
@@ -17,6 +19,9 @@ type ServicesResponse = {
   services: ServiceState[];
   checkedAt: string;
 };
+
+const liveRefreshMs = 5000;
+const weatherRefreshMs = 30 * 60 * 1000;
 
 function formatBytes(value: number) {
   return new Intl.NumberFormat("en", {
@@ -40,6 +45,24 @@ function formatCheckedAt(value: string) {
   }).format(new Date(value));
 }
 
+function formatDate(value: string) {
+  return new Intl.DateTimeFormat("en", {
+    month: "short",
+    day: "numeric"
+  }).format(new Date(`${value}T12:00:00`));
+}
+
+function formatTime(value: string) {
+  return new Intl.DateTimeFormat("en", {
+    hour: "2-digit",
+    minute: "2-digit"
+  }).format(new Date(value));
+}
+
+function isStale(value: string) {
+  return Date.now() - new Date(value).getTime() > 90 * 60 * 1000;
+}
+
 async function fetchJson<T>(url: string, signal: AbortSignal): Promise<T> {
   const response = await fetch(url, { cache: "no-store", signal });
   if (!response.ok) throw new Error(`Request failed: ${response.status}`);
@@ -49,12 +72,15 @@ async function fetchJson<T>(url: string, signal: AbortSignal): Promise<T> {
 export function SystemDashboard({
   initialHealth,
   initialServices,
+  initialWeather,
   workspace,
   configPath
 }: SystemDashboardProps) {
   const [health, setHealth] = useState(initialHealth);
   const [services, setServices] = useState(initialServices);
+  const [weather, setWeather] = useState(initialWeather);
   const [refreshError, setRefreshError] = useState<string | null>(null);
+  const [weatherRefreshError, setWeatherRefreshError] = useState<string | null>(null);
 
   useEffect(() => {
     let active = true;
@@ -81,8 +107,39 @@ export function SystemDashboard({
       }
     }
 
-    const interval = window.setInterval(refresh, 5000);
+    const interval = window.setInterval(refresh, liveRefreshMs);
     void refresh();
+
+    return () => {
+      active = false;
+      controller.abort();
+      window.clearInterval(interval);
+    };
+  }, []);
+
+  useEffect(() => {
+    let active = true;
+    let controller = new AbortController();
+
+    async function refreshWeather() {
+      controller.abort();
+      const nextController = new AbortController();
+      controller = nextController;
+
+      try {
+        const nextWeather = await fetchJson<WeatherBriefResponse>("/api/weather/brief", nextController.signal);
+
+        if (!active) return;
+        setWeather(nextWeather);
+        setWeatherRefreshError(null);
+      } catch (error) {
+        if (!active || nextController.signal.aborted) return;
+        setWeatherRefreshError(error instanceof Error ? error.message : "Unable to refresh weather brief");
+      }
+    }
+
+    const interval = window.setInterval(refreshWeather, weatherRefreshMs);
+    void refreshWeather();
 
     return () => {
       active = false;
@@ -93,14 +150,18 @@ export function SystemDashboard({
 
   const missingRoots = useMemo(() => workspace.roots.filter((root) => !root.exists), [workspace.roots]);
   const unhealthyServices = useMemo(() => services.filter((service) => !service.active), [services]);
+  const weatherStale = Boolean(weather.brief && isStale(weather.brief.generatedAt));
   const notices = useMemo(
     () => [
       ...health.notices,
       ...unhealthyServices.map((service) => `${service.name} is ${service.state}.`),
       ...missingRoots.map((root) => `${root.label} source not found at ${root.path}.`),
+      ...(weather.error ? [`Weather brief unavailable: ${weather.error}.`] : []),
+      ...(weatherRefreshError ? [`Cloudmancer refresh failed: ${weatherRefreshError}.`] : []),
+      ...(weatherStale ? ["Weather brief is stale."] : []),
       ...(refreshError ? [`Live refresh failed: ${refreshError}.`] : [])
     ],
-    [health.notices, unhealthyServices, missingRoots, refreshError]
+    [health.notices, unhealthyServices, missingRoots, refreshError, weather.error, weatherRefreshError, weatherStale]
   );
 
   return (
@@ -130,6 +191,69 @@ export function SystemDashboard({
           detail={`Load ${health.loadAverage.join(" / ")}`}
         />
       </div>
+
+      <Panel tone={weather.error || weatherStale || !weather.brief ? "amber" : "blue"} className="space-y-5" data-testid="daily-weather">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-3">
+            <CloudSun className="h-6 w-6 text-bridge-bright" />
+            <div>
+              <SectionLabel>Daily Weather</SectionLabel>
+              <h2 className="text-2xl font-black">
+                {weather.brief ? `${formatDate(weather.brief.forecastDate)} forecast` : "Forecast unavailable"}
+              </h2>
+            </div>
+          </div>
+          <StatusPill
+            label={weather.brief && !weatherStale ? "ready" : "stale"}
+            status={weather.brief && !weatherStale ? "online" : "warning"}
+          />
+        </div>
+
+        {weather.brief ? (
+          <>
+            <div className="grid gap-4 md:grid-cols-2">
+              {weather.brief.locations.map((location) => (
+                <div key={location.id} className="rounded border border-white/10 bg-black/20 p-4">
+                  <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                    <div>
+                      <h3 className="text-xl font-black text-white">{location.name}</h3>
+                      <p className="mt-1 text-sm text-slate-300">{location.condition}</p>
+                    </div>
+                    <div className="text-left sm:text-right">
+                      <div className="text-2xl font-black text-white">{location.temperatureMaxC}C</div>
+                      <div className="text-xs uppercase text-slate-400">low {location.temperatureMinC}C</div>
+                    </div>
+                  </div>
+                  <p className="mt-4 text-sm text-slate-300">{location.summary}</p>
+                  <div className="mt-4 grid gap-3 text-sm text-slate-300 sm:grid-cols-3">
+                    <div className="flex items-center gap-2">
+                      <Droplets className="h-4 w-4 text-bridge-bright" />
+                      {location.precipitationProbabilityMaxPercent ?? "N/A"}% / {location.precipitationSumMm} mm
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Wind className="h-4 w-4 text-bridge-bright" />
+                      {location.windSpeedMaxKmh} km/h
+                    </div>
+                    <div className="text-slate-400">
+                      {formatTime(location.sunrise)} - {formatTime(location.sunset)}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <p className="text-xs uppercase text-slate-500">
+              Published by {weather.brief.agentName} at {formatCheckedAt(weather.brief.generatedAt)} from {weather.brief.source}
+            </p>
+          </>
+        ) : (
+          <div className="rounded border border-bridge-amber/30 bg-bridge-amber/8 px-4 py-3 text-sm text-bridge-amber">
+            Run Cloudmancer to create the weather brief.
+          </div>
+        )}
+
+        {weather.error ? <p className="text-sm text-bridge-amber">{weather.error}</p> : null}
+        {weatherRefreshError ? <p className="text-sm text-bridge-amber">{weatherRefreshError}</p> : null}
+      </Panel>
 
       <div className="grid gap-6 lg:grid-cols-[1.25fr_0.75fr]">
         <Panel tone={notices.length ? "amber" : "mint"} className="space-y-4">

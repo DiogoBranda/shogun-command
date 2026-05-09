@@ -56,7 +56,7 @@ export function discoverWorkspace(): WorkspaceDiscovery {
   const existingCandidates = candidates.filter((entry) => entry.exists);
   const summaries = {
     memoryFiles: existingCandidates.filter((entry) => /memory/i.test(entry.label) || /memory/i.test(entry.path)).length,
-    agentFiles: existingCandidates.filter((entry) => /agent|openclaw|user/i.test(entry.label)).length,
+    agentFiles: existingCandidates.filter((entry) => /agent|user/i.test(entry.label)).length,
     projectDocs: existingCandidates.filter((entry) => /project|brief|doc/i.test(entry.label)).length,
     taskFiles: existingCandidates.filter((entry) => /task|schedule/i.test(entry.label)).length
   };

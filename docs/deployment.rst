@@ -87,6 +87,69 @@ The drop-in path is:
 
    /etc/systemd/system/shogun-command.service.d/auth.conf
 
+Cloudmancer Agent Timer
+-----------------------
+
+Cloudmancer is the Research Branch weather agent. It runs as a companion
+systemd timer and writes the private runtime brief to
+``/home/<PI_USER>/shogun-command/data/weather-brief.local.json`` for Mission
+Control to read.
+
+Service:
+
+.. code-block:: ini
+
+   [Unit]
+   Description=Shogun Command Cloudmancer weather brief
+   Wants=network-online.target
+   After=network-online.target
+
+   [Service]
+   Type=oneshot
+   User=<PI_USER>
+   Group=<PI_USER>
+   WorkingDirectory=/home/<PI_USER>/shogun-command
+   ExecStart=/usr/bin/npm run agent:weather
+
+Save it as:
+
+.. code-block:: text
+
+   /etc/systemd/system/shogun-weather-agent.service
+
+Timer:
+
+.. code-block:: ini
+
+   [Unit]
+   Description=Run Shogun Command Cloudmancer weather brief
+
+   [Timer]
+   OnCalendar=*:0/30
+   Timezone=Europe/Lisbon
+   Persistent=true
+   Unit=shogun-weather-agent.service
+
+   [Install]
+   WantedBy=timers.target
+
+Save it as:
+
+.. code-block:: text
+
+   /etc/systemd/system/shogun-weather-agent.timer
+
+Enable and verify:
+
+.. code-block:: bash
+
+   sudo systemctl daemon-reload
+   sudo systemctl enable --now shogun-weather-agent.timer
+   sudo systemctl start shogun-weather-agent.service
+   systemctl list-timers shogun-weather-agent.timer --no-pager
+   systemctl status shogun-weather-agent.service --no-pager -l
+   journalctl -u shogun-weather-agent.service -n 80 --no-pager
+
 Production Environment Template
 -------------------------------
 
@@ -184,6 +247,7 @@ paths excluded:
 * ``.env.production``
 * ``*.local.md``
 * ``config/*.local.json`` unless ``DEPLOY_LOCAL_CONFIG=1`` is set.
+* ``data/*.local.json``
 * ``tsconfig.tsbuildinfo``
 
 After syncing, the script opens an interactive SSH session with ``ssh -tt`` so

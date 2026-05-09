@@ -1,4 +1,5 @@
 import { Crown, Network, Shield, Sparkles, Users } from "lucide-react";
+import Image from "next/image";
 import { Panel, SectionLabel, StatusPill } from "@/components/ui/panel";
 import { getTeam } from "@/features/command/team-roster/server";
 import type { TeamMember } from "@/features/command/team-roster/types";
@@ -14,10 +15,23 @@ function Avatar({ member }: { member: TeamMember }) {
 
   return (
     <div className="relative h-20 w-20 shrink-0 rounded border border-white/15 bg-black/40 p-2">
-      <div className={`mx-auto h-10 w-10 rounded-sm ${colors[member.color] ?? "bg-bridge-bright"}`} />
-      <div className={`mx-auto mt-1 h-4 w-12 rounded-sm ${colors[member.color] ?? "bg-bridge-bright"} opacity-80`} />
-      <div className="absolute left-5 top-4 h-2 w-2 bg-white" />
-      <div className="absolute right-5 top-4 h-2 w-2 bg-white" />
+      {member.avatarImage ? (
+        <Image
+          src={member.avatarImage}
+          alt=""
+          width={64}
+          height={64}
+          className="mx-auto h-16 w-16 object-contain"
+          priority={member.id === "cloudmancer"}
+        />
+      ) : (
+        <>
+          <div className={`mx-auto h-10 w-10 rounded-sm ${colors[member.color] ?? "bg-bridge-bright"}`} />
+          <div className={`mx-auto mt-1 h-4 w-12 rounded-sm ${colors[member.color] ?? "bg-bridge-bright"} opacity-80`} />
+          <div className="absolute left-5 top-4 h-2 w-2 bg-white" />
+          <div className="absolute right-5 top-4 h-2 w-2 bg-white" />
+        </>
+      )}
     </div>
   );
 }

@@ -67,6 +67,11 @@ test.describe("Mission Control", () => {
     await expect(page.getByRole("heading", { name: "Mission Control" })).toBeVisible();
     await expect(page.locator("aside")).toBeVisible();
     await expect(page.getByText("Operational Deck")).toBeVisible();
+    await expect(page.getByTestId("daily-weather")).toBeVisible();
+    await expect(page.getByRole("heading", { name: /Daily Weather|May 9 forecast/ })).toBeVisible();
+    await expect(page.getByText("Published by Cloudmancer")).toBeVisible();
+    await expect(page.getByText("Pacos de Ferreira")).toBeVisible();
+    await expect(page.getByText("Porto", { exact: true })).toBeVisible();
     await expectMetricGridIsBounded(page);
     await expectNoHorizontalOverflow(page);
 
@@ -86,6 +91,10 @@ test.describe("Mission Control", () => {
     await expect(page.locator("aside")).toBeHidden();
     await expect(page.getByText("Shogun Command", { exact: true })).toBeVisible();
     await expect(page.getByRole("link", { name: /tasks/i })).toBeVisible();
+    await expect(page.getByTestId("daily-weather")).toBeVisible();
+    await expect(page.getByText("Published by Cloudmancer")).toBeVisible();
+    await expect(page.getByText("Pacos de Ferreira")).toBeVisible();
+    await expect(page.getByText("Porto", { exact: true })).toBeVisible();
     await expectNoHorizontalOverflow(page);
 
     await expect(page).toHaveScreenshot("mission-control-mobile.png", {
@@ -106,6 +115,7 @@ test.describe("Team", () => {
     await expect(page.locator("aside")).toBeVisible();
     await expect(page.getByText("Specialist Roster")).toBeVisible();
     await expect(page.getByText("Diogo", { exact: true })).toBeVisible();
+    await expect(page.getByText("Cloudmancer", { exact: true })).toBeVisible();
     await expectNoHorizontalOverflow(page);
 
     await expect(page).toHaveScreenshot("team-desktop.png", {
@@ -124,6 +134,7 @@ test.describe("Team", () => {
     await expect(page.locator("aside")).toBeHidden();
     await expect(page.getByText("Shogun Command", { exact: true })).toBeVisible();
     await expect(page.getByText("Specialist Roster")).toBeVisible();
+    await expect(page.getByText("Cloudmancer", { exact: true })).toBeVisible();
     await expectNoHorizontalOverflow(page);
 
     await expect(page).toHaveScreenshot("team-mobile.png", {

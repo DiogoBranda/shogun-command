@@ -8,6 +8,7 @@
     "start": "next start -H 127.0.0.1 -p 3000",
     "lint": "next lint",
     "tasks:check": "node scripts/check-tasks-config.mjs",
+    "agent:weather": "node scripts/update-weather-brief.mjs",
     "test:ui": "playwright test",
     "test:ui:update": "playwright test --update-snapshots",
     "docs:build": "docs/.venv/bin/sphinx-build -b html -d docs/_build/doctrees docs docs/_build/html",
