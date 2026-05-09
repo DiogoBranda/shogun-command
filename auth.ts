@@ -1,6 +1,6 @@
 export {
   auth,
-  e2eAuthCookieName,
+  e2eEmail,
   getCommandSession,
   handlers,
   signIn,

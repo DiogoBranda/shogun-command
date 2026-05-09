@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextFetchEvent, NextRequest } from "next/server";
 import { auth } from "@/auth";
-import { e2eAuthCookieName } from "@/features/security/google-authentication/auth";
 
 const publicPrefixes = ["/api/auth"];
 const publicPaths = ["/login"];
@@ -14,10 +13,6 @@ const authMiddleware = auth((request) => {
   const { pathname } = request.nextUrl;
 
   if (isPublicPath(pathname)) {
-    return NextResponse.next();
-  }
-
-  if (process.env.E2E_TEST_AUTH === "true" && request.cookies.get(e2eAuthCookieName)?.value === "true") {
     return NextResponse.next();
   }
 
@@ -40,10 +35,6 @@ const runAuthMiddleware = authMiddleware as unknown as (
 ) => NextResponse | Response | Promise<NextResponse | Response>;
 
 export default function middleware(request: NextRequest, event: NextFetchEvent) {
-  if (process.env.E2E_TEST_AUTH === "true" && request.cookies.get(e2eAuthCookieName)?.value === "true") {
-    return NextResponse.next();
-  }
-
   return runAuthMiddleware(request, event);
 }
 

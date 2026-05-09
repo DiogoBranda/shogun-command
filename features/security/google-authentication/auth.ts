@@ -1,18 +1,34 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
-import { cookies } from "next/headers";
 
 const e2eAuthEnabled = process.env.E2E_TEST_AUTH === "true";
-export const e2eAuthCookieName = "e2e-test-auth";
 export const e2eEmail = "e2e@shogun.local";
 
-const allowedEmails = new Set(
-  (process.env.AUTH_ALLOWED_EMAILS ?? "")
-    .split(",")
-    .map((email) => email.trim().toLowerCase())
-    .filter(Boolean)
-);
+function normalizeEmail(email?: unknown) {
+  return typeof email === "string" ? email.trim().toLowerCase() : "";
+}
+
+function getAllowedEmails() {
+  const configuredEmails =
+    e2eAuthEnabled && process.env.E2E_AUTH_ALLOWED_EMAILS
+      ? process.env.E2E_AUTH_ALLOWED_EMAILS
+      : process.env.AUTH_ALLOWED_EMAILS;
+
+  return new Set(
+    (configuredEmails ?? "")
+      .split(",")
+      .map(normalizeEmail)
+      .filter(Boolean)
+  );
+}
+
+const allowedEmails = getAllowedEmails();
+
+function isAllowedEmail(email: string) {
+  const emails = e2eAuthEnabled ? getAllowedEmails() : allowedEmails;
+  return emails.has(email);
+}
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
   providers: [
@@ -20,14 +36,21 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
     ...(e2eAuthEnabled
       ? [
           Credentials({
-            id: "e2e-test",
             name: "E2E Test",
-            credentials: {},
-            async authorize() {
+            credentials: {
+              email: { label: "Email", type: "email" }
+            },
+            async authorize(credentials) {
+              const email = normalizeEmail(credentials?.email);
+
+              if (!email) {
+                return null;
+              }
+
               return {
                 id: "e2e-test-user",
                 name: "Diogo Silva",
-                email: e2eEmail
+                email
               };
             }
           })
@@ -39,12 +62,9 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
   },
   callbacks: {
     signIn({ account, profile, user }) {
-      if (e2eAuthEnabled && account?.provider === "e2e-test" && user.email === e2eEmail) {
-        return true;
-      }
-
-      const email = (profile?.email ?? user.email ?? "").toLowerCase();
-      return allowedEmails.has(email);
+      const email =
+        account?.provider === "credentials" ? normalizeEmail(user.email) : normalizeEmail(profile?.email ?? user.email);
+      return isAllowedEmail(email);
     },
     session({ session, token }) {
       if (session.user && token.email) {
@@ -61,17 +81,5 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
 });
 
 export async function getCommandSession() {
-  if (e2eAuthEnabled) {
-    const cookieStore = await cookies();
-    if (cookieStore.get(e2eAuthCookieName)?.value === "true") {
-      return {
-        user: {
-          name: "Diogo Silva",
-          email: e2eEmail
-        }
-      };
-    }
-  }
-
   return auth();
 }
