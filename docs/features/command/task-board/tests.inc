@@ -20,6 +20,16 @@ Validation
    ``npm run build`` should compile the Tasks page while preserving the
    existing ``TaskManifest`` response shape and safe fallback behavior.
 
+.. test:: Task board UI renders validated fixture data
+   :id: TEST_TASKBOARD_UI_FIXTURE_RENDER
+   :status: active
+   :owner: Diogo
+   :links: REQ_TASKBOARD_LOCAL_TASKS_DISPLAYED, REQ_TASKBOARD_TASK_CONFIG_VALIDATED
+
+   ``npx playwright test tests/ui/task-board.spec.ts --project=desktop`` should
+   render the Tasks page from deterministic E2E fixture data and verify lane
+   content, counts, statuses, next actions, and task links.
+
 .. test:: Task board documentation builds
    :id: TEST_TASKBOARD_DOCS_BUILD
    :status: active

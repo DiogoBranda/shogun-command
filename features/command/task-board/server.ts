@@ -1,5 +1,6 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
 import { dirname, join } from "path";
+import { e2eTasks, useE2eFixtures } from "@/features/testing/e2e-fixtures";
 import { validateTaskManifest } from "./schema";
 import type { CommandTask, TaskManifest } from "./types";
 
@@ -20,6 +21,10 @@ const defaultTasks: CommandTask[] = [
 ];
 
 export function getTasks(): TaskManifest {
+  if (useE2eFixtures()) {
+    return e2eTasks;
+  }
+
   try {
     if (!existsSync(tasksPath)) {
       mkdirSync(dirname(tasksPath), { recursive: true });
