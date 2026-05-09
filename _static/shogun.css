@@ -1,0 +1,99 @@
+:root {
+  --font-stack: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-stack--monospace: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+}
+
+body {
+  font-family: var(--font-stack);
+}
+
+body[data-theme="dark"] {
+  --color-background-primary: #050714;
+  --color-background-secondary: #08111f;
+  --color-sidebar-background: #08111f;
+  --color-sidebar-background-border: rgba(119, 196, 255, 0.22);
+  --color-sidebar-link-text: #cbd5e1;
+  --color-sidebar-link-text--top-level: #e8f2ff;
+  --color-sidebar-link-text--active: #22f5c8;
+  --color-sidebar-search-background: rgba(255, 255, 255, 0.05);
+  --color-sidebar-search-background--focus: rgba(119, 196, 255, 0.12);
+  --color-sidebar-search-border: rgba(119, 196, 255, 0.34);
+  --color-content-foreground: #e8f2ff;
+  --color-foreground-primary: #e8f2ff;
+  --color-foreground-secondary: #cbd5e1;
+  --color-foreground-muted: #94a3b8;
+  --color-link: #77c4ff;
+  --color-link--hover: #22f5c8;
+  --color-admonition-background: rgba(13, 23, 40, 0.82);
+  --color-admonition-title-background: rgba(119, 196, 255, 0.16);
+  --color-code-background: rgba(255, 255, 255, 0.06);
+  --color-code-foreground: #e8f2ff;
+  --color-api-background: rgba(13, 23, 40, 0.82);
+  --color-api-background-hover: rgba(119, 196, 255, 0.12);
+  --color-table-border: rgba(119, 196, 255, 0.22);
+  --color-table-header-background: rgba(119, 196, 255, 0.10);
+}
+
+body[data-theme="dark"] .page {
+  background:
+    linear-gradient(rgba(119, 196, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(119, 196, 255, 0.025) 1px, transparent 1px),
+    radial-gradient(circle at 42% -12%, rgba(156, 108, 255, 0.12), transparent 30%),
+    #050714;
+  background-size: 44px 44px, 44px 44px, auto, auto;
+}
+
+body[data-theme="dark"] .sidebar-drawer,
+body[data-theme="dark"] .toc-drawer {
+  background: rgba(8, 17, 31, 0.96);
+  border-color: rgba(119, 196, 255, 0.22);
+}
+
+.content {
+  line-height: 1.7;
+}
+
+.content h1,
+.content h2,
+.content h3 {
+  letter-spacing: 0;
+}
+
+body[data-theme="dark"] .content h1,
+body[data-theme="dark"] .content h2,
+body[data-theme="dark"] .content h3 {
+  color: #ffffff;
+}
+
+body[data-theme="dark"] .content h1 {
+  border-bottom: 1px solid rgba(119, 196, 255, 0.28);
+  padding-bottom: 0.45rem;
+}
+
+body[data-theme="dark"] .admonition,
+body[data-theme="dark"] .topic,
+body[data-theme="dark"] .need,
+body[data-theme="dark"] .need_container,
+body[data-theme="dark"] table.docutils {
+  background: rgba(13, 23, 40, 0.82);
+  border-color: rgba(119, 196, 255, 0.25);
+  border-radius: 8px;
+  box-shadow: 0 0 24px rgba(119, 196, 255, 0.08);
+}
+
+body[data-theme="dark"] .highlight,
+body[data-theme="dark"] pre {
+  border-radius: 8px;
+  border: 1px solid rgba(119, 196, 255, 0.18);
+}
+
+body[data-theme="dark"] .mermaid {
+  background: rgba(8, 17, 31, 0.72);
+  border: 1px solid rgba(119, 196, 255, 0.18);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+body[data-theme="dark"] ::selection {
+  background: rgba(34, 245, 200, 0.28);
+}

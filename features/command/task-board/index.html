@@ -1,0 +1,1322 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../../../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../../genindex.html"><link rel="search" title="Search" href="../../../search.html"><link rel="next" title="Deployment" href="../../../deployment.html"><link rel="prev" title="Team Roster" href="../team-roster/index.html">
+
+    <!-- Generated with Sphinx 9.1.0 and Furo 2025.12.19 -->
+        <title>Task Board - Shogun Command Docs</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=7bdb33bb" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-data-viewer/jsonview.bundle.css?v=f6ef2277" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-needs/libs/html/datatables.min.css?v=4b4fd840" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-needs/common_css/needstable.css?v=5e1b6797" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-needs/common_css/need_style.css?v=92936fa5" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-needs/common_css/need_links.css?v=2150a916" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-needs/common_css/need_toggle.css?v=5c6620df" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-needs/common_css/need_core.css?v=f5b60a78" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-needs/modern.css?v=803738c0" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/shogun.css?v=871cbd66" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #eeffcc;
+  --color-code-foreground: black;
+  --color-brand-primary: #0d1728;
+  --color-brand-content: #0d1728;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  --color-brand-primary: #77c4ff;
+  --color-brand-content: #22f5c8;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  --color-brand-primary: #77c4ff;
+  --color-brand-content: #22f5c8;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../../index.html"><div class="brand">Shogun Command Docs</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../index.html">
+  
+  <span class="sidebar-brand-text">Shogun Command Docs</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Core Docs</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture.html">Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../docs-process.html">Documentation Process</a></li>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../../index.html">Feature Documentation</a><input aria-label="Toggle navigation of Feature Documentation" checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../security/google-authentication/index.html">Google Authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../operations/system-health/index.html">System Health</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../operations/workspace-discovery/index.html">Workspace Discovery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../team-roster/index.html">Team Roster</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Task Board</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../deployment.html">Deployment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../operations.html">Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../codex-context.html">Codex Context</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../requirements.html">Requirements Traceability</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../../../_sources/features/command/task-board/index.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="task-board">
+<h1>Task Board<a class="headerlink" href="#task-board" title="Link to this heading">¶</a></h1>
+<p>Task Board gives Shogun Command a private work queue for current operations,
+follow-up work, and future ideas. Real task data stays in the ignored local
+configuration file, while the committed example file documents the public
+schema without exposing private planning details.</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
+<section id="introduction">
+<h3>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h3>
+<p>Task Board is the operational work queue for Shogun Command. It keeps active
+work visible inside the authenticated command UI without requiring private task
+details to be committed to the public repository.</p>
+<p>The feature treats <code class="docutils literal notranslate"><span class="pre">config/tasks.local.json</span></code> as the private source of truth
+and <code class="docutils literal notranslate"><span class="pre">config/tasks.example.json</span></code> as the committed schema example.</p>
+</section>
+<section id="user-scenario">
+<h3>User Scenario<a class="headerlink" href="#user-scenario" title="Link to this heading">¶</a></h3>
+<div class="need_container docutils container" id="SNCB-27c2023a">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_scenario docutils align-default" id="SCN_TASKBOARD_OPERATOR_REVIEWS_WORK">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">User Scenario</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Operator reviews current work</span></span></span></strong><span> <span class="needs-id"><a class="reference internal" href="#SCN_TASKBOARD_OPERATOR_REVIEWS_WORK" title="SCN_TASKBOARD_OPERATOR_REVIEWS_WORK">SCN_TASKBOARD_OPERATOR_REVIEWS_WORK</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">active</span></span></div>
+<div class="line"><span class="needs_owner"><span class="needs_label">owner: </span><span class="needs_data">Diogo</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">links incoming: <span class="links"><span><a class="reference internal" href="#UC_TASKBOARD_PRIVATE_QUEUE_UPKEEP" title="SCN_TASKBOARD_OPERATOR_REVIEWS_WORK">UC_TASKBOARD_PRIVATE_QUEUE_UPKEEP [Use Case]</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>An authenticated operator opens the Tasks page and reviews work by lane,
+priority, status, area, next action, and related links.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="use-case">
+<h3>Use Case<a class="headerlink" href="#use-case" title="Link to this heading">¶</a></h3>
+<div class="need_container docutils container" id="SNCB-97e83940">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_usecase docutils align-default" id="UC_TASKBOARD_PRIVATE_QUEUE_UPKEEP">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Use Case</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Operator maintains the private work queue</span></span></span></strong><span> <span class="needs-id"><a class="reference internal" href="#UC_TASKBOARD_PRIVATE_QUEUE_UPKEEP" title="UC_TASKBOARD_PRIVATE_QUEUE_UPKEEP">UC_TASKBOARD_PRIVATE_QUEUE_UPKEEP</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">active</span></span></div>
+<div class="line"><span class="needs_owner"><span class="needs_label">owner: </span><span class="needs_data">Diogo</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">links outgoing: <span class="links"><span><a class="reference internal" href="#SCN_TASKBOARD_OPERATOR_REVIEWS_WORK" title="UC_TASKBOARD_PRIVATE_QUEUE_UPKEEP">SCN_TASKBOARD_OPERATOR_REVIEWS_WORK [User Scenario]</a></span></span></div>
+<div class="line">links incoming: <span class="links"><span><a class="reference internal" href="#REQ_TASKBOARD_LOCAL_TASKS_DISPLAYED" title="UC_TASKBOARD_PRIVATE_QUEUE_UPKEEP">REQ_TASKBOARD_LOCAL_TASKS_DISPLAYED [Functional Requirement]</a>, <a class="reference internal" href="#REQ_TASKBOARD_PUBLIC_SCHEMA_EXAMPLE" title="UC_TASKBOARD_PRIVATE_QUEUE_UPKEEP">REQ_TASKBOARD_PUBLIC_SCHEMA_EXAMPLE [Functional Requirement]</a>, <a class="reference internal" href="#REQ_TASKBOARD_TASK_CONFIG_VALIDATED" title="UC_TASKBOARD_PRIVATE_QUEUE_UPKEEP">REQ_TASKBOARD_TASK_CONFIG_VALIDATED [Functional Requirement]</a>, <a class="reference internal" href="#REQ_TASKBOARD_SAFE_FALLBACK" title="UC_TASKBOARD_PRIVATE_QUEUE_UPKEEP">REQ_TASKBOARD_SAFE_FALLBACK [Functional Requirement]</a>, <a class="reference internal" href="#REQ_TASKBOARD_DONE_ARCHIVE" title="UC_TASKBOARD_PRIVATE_QUEUE_UPKEEP">REQ_TASKBOARD_DONE_ARCHIVE [Functional Requirement]</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><strong>Actors</strong></p>
+<ul class="simple">
+<li><p>Operator</p></li>
+<li><p>Shogun Command</p></li>
+<li><p>Local task configuration</p></li>
+</ul>
+<p><strong>Preconditions</strong></p>
+<ul class="simple">
+<li><p>The operator can access authenticated command pages.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config/tasks.local.json</span></code> exists or can be generated locally.</p></li>
+<li><p>Private task details are not committed.</p></li>
+</ul>
+<p><strong>Expectations</strong></p>
+<ul class="simple">
+<li><p>Real tasks are read from <code class="docutils literal notranslate"><span class="pre">config/tasks.local.json</span></code>.</p></li>
+<li><p>The public repository contains only the sanitized example schema.</p></li>
+<li><p>Malformed task files are caught by a lightweight check.</p></li>
+<li><p>Completed tasks are archived away from active lanes.</p></li>
+<li><p>The UI remains usable even if local task data is temporarily invalid.</p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="functional-requirements">
+<h3>Functional Requirements<a class="headerlink" href="#functional-requirements" title="Link to this heading">¶</a></h3>
+<div class="need_container docutils container" id="SNCB-9eb6d107">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_req docutils align-default" id="REQ_TASKBOARD_LOCAL_TASKS_DISPLAYED">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Functional Requirement</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Task board displays private local tasks</span></span></span></strong><span> <span class="needs-id"><a class="reference internal" href="#REQ_TASKBOARD_LOCAL_TASKS_DISPLAYED" title="REQ_TASKBOARD_LOCAL_TASKS_DISPLAYED">REQ_TASKBOARD_LOCAL_TASKS_DISPLAYED</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">active</span></span></div>
+<div class="line"><span class="needs_owner"><span class="needs_label">owner: </span><span class="needs_data">Diogo</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">links outgoing: <span class="links"><span><a class="reference internal" href="#UC_TASKBOARD_PRIVATE_QUEUE_UPKEEP" title="REQ_TASKBOARD_LOCAL_TASKS_DISPLAYED">UC_TASKBOARD_PRIVATE_QUEUE_UPKEEP [Use Case]</a></span></span></div>
+<div class="line">links incoming: <span class="links"><span><a class="reference internal" href="#ARCH_TASKBOARD_CONFIG_BOUNDARY" title="REQ_TASKBOARD_LOCAL_TASKS_DISPLAYED">ARCH_TASKBOARD_CONFIG_BOUNDARY [Architecture Note]</a>, <a class="reference internal" href="#TEST_TASKBOARD_BUILD_VALIDATION" title="REQ_TASKBOARD_LOCAL_TASKS_DISPLAYED">TEST_TASKBOARD_BUILD_VALIDATION [Validation]</a>, <a class="reference internal" href="#TEST_TASKBOARD_UI_FIXTURE_RENDER" title="REQ_TASKBOARD_LOCAL_TASKS_DISPLAYED">TEST_TASKBOARD_UI_FIXTURE_RENDER [Validation]</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>Shogun Command must display tasks from <code class="docutils literal notranslate"><span class="pre">config/tasks.local.json</span></code> grouped by
+lane, with status, priority, area, summary, next action, and links.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-6a7f4853">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_req docutils align-default" id="REQ_TASKBOARD_PUBLIC_SCHEMA_EXAMPLE">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Functional Requirement</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Task board keeps public schema separate</span></span></span></strong><span> <span class="needs-id"><a class="reference internal" href="#REQ_TASKBOARD_PUBLIC_SCHEMA_EXAMPLE" title="REQ_TASKBOARD_PUBLIC_SCHEMA_EXAMPLE">REQ_TASKBOARD_PUBLIC_SCHEMA_EXAMPLE</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">active</span></span></div>
+<div class="line"><span class="needs_owner"><span class="needs_label">owner: </span><span class="needs_data">Diogo</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">links outgoing: <span class="links"><span><a class="reference internal" href="#UC_TASKBOARD_PRIVATE_QUEUE_UPKEEP" title="REQ_TASKBOARD_PUBLIC_SCHEMA_EXAMPLE">UC_TASKBOARD_PRIVATE_QUEUE_UPKEEP [Use Case]</a></span></span></div>
+<div class="line">links incoming: <span class="links"><span><a class="reference internal" href="#ARCH_TASKBOARD_CONFIG_BOUNDARY" title="REQ_TASKBOARD_PUBLIC_SCHEMA_EXAMPLE">ARCH_TASKBOARD_CONFIG_BOUNDARY [Architecture Note]</a>, <a class="reference internal" href="#TEST_TASKBOARD_CONFIG_SCHEMA_CHECK" title="REQ_TASKBOARD_PUBLIC_SCHEMA_EXAMPLE">TEST_TASKBOARD_CONFIG_SCHEMA_CHECK [Validation]</a>, <a class="reference internal" href="#TEST_TASKBOARD_DOCS_BUILD" title="REQ_TASKBOARD_PUBLIC_SCHEMA_EXAMPLE">TEST_TASKBOARD_DOCS_BUILD [Validation]</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>The repository must include a sanitized <code class="docutils literal notranslate"><span class="pre">config/tasks.example.json</span></code> that
+documents the public task shape without real private task data.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-e38272ba">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_req docutils align-default" id="REQ_TASKBOARD_TASK_CONFIG_VALIDATED">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Functional Requirement</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Task board validates task configuration</span></span></span></strong><span> <span class="needs-id"><a class="reference internal" href="#REQ_TASKBOARD_TASK_CONFIG_VALIDATED" title="REQ_TASKBOARD_TASK_CONFIG_VALIDATED">REQ_TASKBOARD_TASK_CONFIG_VALIDATED</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">active</span></span></div>
+<div class="line"><span class="needs_owner"><span class="needs_label">owner: </span><span class="needs_data">Diogo</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">links outgoing: <span class="links"><span><a class="reference internal" href="#UC_TASKBOARD_PRIVATE_QUEUE_UPKEEP" title="REQ_TASKBOARD_TASK_CONFIG_VALIDATED">UC_TASKBOARD_PRIVATE_QUEUE_UPKEEP [Use Case]</a></span></span></div>
+<div class="line">links incoming: <span class="links"><span><a class="reference internal" href="#ARCH_TASKBOARD_LOAD_SEQUENCE" title="REQ_TASKBOARD_TASK_CONFIG_VALIDATED">ARCH_TASKBOARD_LOAD_SEQUENCE [Architecture Note]</a>, <a class="reference internal" href="#TEST_TASKBOARD_CONFIG_SCHEMA_CHECK" title="REQ_TASKBOARD_TASK_CONFIG_VALIDATED">TEST_TASKBOARD_CONFIG_SCHEMA_CHECK [Validation]</a>, <a class="reference internal" href="#TEST_TASKBOARD_UI_FIXTURE_RENDER" title="REQ_TASKBOARD_TASK_CONFIG_VALIDATED">TEST_TASKBOARD_UI_FIXTURE_RENDER [Validation]</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>Task configuration must be checked for required fields, allowed enums, link
+shape, and parseable JSON before it is trusted.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-215bf2d7">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_req docutils align-default" id="REQ_TASKBOARD_SAFE_FALLBACK">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Functional Requirement</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Task board has safe fallback behavior</span></span></span></strong><span> <span class="needs-id"><a class="reference internal" href="#REQ_TASKBOARD_SAFE_FALLBACK" title="REQ_TASKBOARD_SAFE_FALLBACK">REQ_TASKBOARD_SAFE_FALLBACK</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">active</span></span></div>
+<div class="line"><span class="needs_owner"><span class="needs_label">owner: </span><span class="needs_data">Diogo</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">links outgoing: <span class="links"><span><a class="reference internal" href="#UC_TASKBOARD_PRIVATE_QUEUE_UPKEEP" title="REQ_TASKBOARD_SAFE_FALLBACK">UC_TASKBOARD_PRIVATE_QUEUE_UPKEEP [Use Case]</a></span></span></div>
+<div class="line">links incoming: <span class="links"><span><a class="reference internal" href="#ARCH_TASKBOARD_LOAD_SEQUENCE" title="REQ_TASKBOARD_SAFE_FALLBACK">ARCH_TASKBOARD_LOAD_SEQUENCE [Architecture Note]</a>, <a class="reference internal" href="#TEST_TASKBOARD_BUILD_VALIDATION" title="REQ_TASKBOARD_SAFE_FALLBACK">TEST_TASKBOARD_BUILD_VALIDATION [Validation]</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>If the local task file is missing or invalid, the task board must remain
+renderable using a built-in fallback task.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-570d5251">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_req docutils align-default" id="REQ_TASKBOARD_DONE_ARCHIVE">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Functional Requirement</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Task board archives completed tasks</span></span></span></strong><span> <span class="needs-id"><a class="reference internal" href="#REQ_TASKBOARD_DONE_ARCHIVE" title="REQ_TASKBOARD_DONE_ARCHIVE">REQ_TASKBOARD_DONE_ARCHIVE</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">active</span></span></div>
+<div class="line"><span class="needs_owner"><span class="needs_label">owner: </span><span class="needs_data">Diogo</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">links outgoing: <span class="links"><span><a class="reference internal" href="#UC_TASKBOARD_PRIVATE_QUEUE_UPKEEP" title="REQ_TASKBOARD_DONE_ARCHIVE">UC_TASKBOARD_PRIVATE_QUEUE_UPKEEP [Use Case]</a></span></span></div>
+<div class="line">links incoming: <span class="links"><span><a class="reference internal" href="#TEST_TASKBOARD_UI_FIXTURE_RENDER" title="REQ_TASKBOARD_DONE_ARCHIVE">TEST_TASKBOARD_UI_FIXTURE_RENDER [Validation]</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>Tasks with <code class="docutils literal notranslate"><span class="pre">status</span></code> set to <code class="docutils literal notranslate"><span class="pre">done</span></code> must not appear in active lane
+sections. They must appear only in a collapsible <code class="docutils literal notranslate"><span class="pre">Done</span></code> section after all
+active lanes.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="architecture">
+<h2>Architecture<a class="headerlink" href="#architecture" title="Link to this heading">¶</a></h2>
+<section id="static-structure">
+<h3>Static Structure<a class="headerlink" href="#static-structure" title="Link to this heading">¶</a></h3>
+<div class="need_container docutils container" id="SNCB-4827cc4b">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_arch docutils align-default" id="ARCH_TASKBOARD_CONFIG_BOUNDARY">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Architecture Note</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Task board configuration boundary</span></span></span></strong><span> <span class="needs-id"><a class="reference internal" href="#ARCH_TASKBOARD_CONFIG_BOUNDARY" title="ARCH_TASKBOARD_CONFIG_BOUNDARY">ARCH_TASKBOARD_CONFIG_BOUNDARY</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">active</span></span></div>
+<div class="line"><span class="needs_owner"><span class="needs_label">owner: </span><span class="needs_data">Diogo</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">links outgoing: <span class="links"><span><a class="reference internal" href="#REQ_TASKBOARD_LOCAL_TASKS_DISPLAYED" title="ARCH_TASKBOARD_CONFIG_BOUNDARY">REQ_TASKBOARD_LOCAL_TASKS_DISPLAYED [Functional Requirement]</a>, <a class="reference internal" href="#REQ_TASKBOARD_PUBLIC_SCHEMA_EXAMPLE" title="ARCH_TASKBOARD_CONFIG_BOUNDARY">REQ_TASKBOARD_PUBLIC_SCHEMA_EXAMPLE [Functional Requirement]</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>The task board separates private local state from committed public schema
+documentation.</p>
+<pre  class="mermaid">
+        flowchart LR
+  Operator[&quot;Authenticated operator&quot;]
+  Route[&quot;app/(command)/tasks/page.tsx&quot;]
+  Page[&quot;task-board-page.tsx&quot;]
+  Server[&quot;task-board/server.ts&quot;]
+  Schema[&quot;task-board/schema.ts&quot;]
+  Local[&quot;config/tasks.local.json&quot;]
+  Example[&quot;config/tasks.example.json&quot;]
+
+  Operator --&gt; Route
+  Route --&gt; Page
+  Page --&gt; Server
+  Server --&gt; Schema
+  Server --&gt; Local
+  Example -. documents shape .-&gt; Local
+    </pre><p>The route entrypoint renders the task board page component. The page reads a
+manifest from the server module, which loads and validates the ignored local
+JSON file. The committed example JSON is not used as runtime data; it is the
+public contract that contributors can inspect safely.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="sequence">
+<h3>Sequence<a class="headerlink" href="#sequence" title="Link to this heading">¶</a></h3>
+<div class="need_container docutils container" id="SNCB-30a0791c">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_arch docutils align-default" id="ARCH_TASKBOARD_LOAD_SEQUENCE">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Architecture Note</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Task board load sequence</span></span></span></strong><span> <span class="needs-id"><a class="reference internal" href="#ARCH_TASKBOARD_LOAD_SEQUENCE" title="ARCH_TASKBOARD_LOAD_SEQUENCE">ARCH_TASKBOARD_LOAD_SEQUENCE</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">active</span></span></div>
+<div class="line"><span class="needs_owner"><span class="needs_label">owner: </span><span class="needs_data">Diogo</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">links outgoing: <span class="links"><span><a class="reference internal" href="#REQ_TASKBOARD_TASK_CONFIG_VALIDATED" title="ARCH_TASKBOARD_LOAD_SEQUENCE">REQ_TASKBOARD_TASK_CONFIG_VALIDATED [Functional Requirement]</a>, <a class="reference internal" href="#REQ_TASKBOARD_SAFE_FALLBACK" title="ARCH_TASKBOARD_LOAD_SEQUENCE">REQ_TASKBOARD_SAFE_FALLBACK [Functional Requirement]</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p>The load path validates task data before the UI receives it.</p>
+<pre  class="mermaid">
+        sequenceDiagram
+  participant Page as Tasks page
+  participant Server as getTasks()
+  participant Local as tasks.local.json
+  participant Schema as Task schema
+  participant UI as Task cards
+
+  Page-&gt;&gt;Server: Request task manifest
+  Server-&gt;&gt;Local: Read private local JSON
+  alt file missing
+    Server-&gt;&gt;Local: Create fallback local manifest
+  end
+  Server-&gt;&gt;Schema: Validate parsed manifest
+  alt valid
+    Schema--&gt;&gt;Server: Normalized tasks
+  else invalid or parse error
+    Schema--&gt;&gt;Server: Validation errors
+    Server-&gt;&gt;Server: Use built-in fallback
+  end
+  Server--&gt;&gt;Page: TaskManifest
+  Page--&gt;&gt;UI: Render lanes, cards, counts, links
+    </pre><p>Missing local configuration is created from the built-in fallback. Invalid
+local configuration is reported with a concise server warning and replaced
+with fallback data for the render.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="implementation">
+<h2>Implementation<a class="headerlink" href="#implementation" title="Link to this heading">¶</a></h2>
+<section id="implementation-overview">
+<h3>Implementation Overview<a class="headerlink" href="#implementation-overview" title="Link to this heading">¶</a></h3>
+<p>Task Board is implemented as a server-rendered command page backed by a local
+JSON manifest. The runtime source is <code class="docutils literal notranslate"><span class="pre">config/tasks.local.json</span></code>, which is
+ignored by git through <code class="docutils literal notranslate"><span class="pre">config/*.local.json</span></code>. The committed
+<code class="docutils literal notranslate"><span class="pre">config/tasks.example.json</span></code> file exists only to document the public schema.</p>
+</section>
+<section id="code-ownership">
+<h3>Code Ownership<a class="headerlink" href="#code-ownership" title="Link to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">features/command/task-board/server.ts</span></code> owns task loading and fallback
+behavior. <code class="docutils literal notranslate"><span class="pre">features/command/task-board/schema.ts</span></code> owns the allowed values and
+runtime validation. <code class="docutils literal notranslate"><span class="pre">features/command/task-board/components/task-board-page.tsx</span></code>
+owns the visible grouping, cards, status pills, counts, and task links.</p>
+<pre  class="mermaid">
+        flowchart LR
+  Types[&quot;task-board/types.ts&quot;]
+  Schema[&quot;task-board/schema.ts&quot;]
+  Server[&quot;task-board/server.ts&quot;]
+  Page[&quot;task-board-page.tsx&quot;]
+  Check[&quot;scripts/check-tasks-config.mjs&quot;]
+  Local[&quot;config/tasks.local.json&quot;]
+  Example[&quot;config/tasks.example.json&quot;]
+
+  Types --&gt; Schema
+  Schema --&gt; Server
+  Server --&gt; Page
+  Local --&gt; Server
+  Example --&gt; Check
+  Local --&gt; Check
+    </pre><p>The validation script uses the same schema intent in a dependency-free Node
+check so task upkeep can be validated without starting the app.</p>
+</section>
+<section id="main-implementation-flow">
+<h3>Main Implementation Flow<a class="headerlink" href="#main-implementation-flow" title="Link to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">getTasks()</span></code> reads <code class="docutils literal notranslate"><span class="pre">config/tasks.local.json</span></code> and parses it as JSON. The
+parsed value is passed to the task schema validator, which confirms the manifest
+contains a <code class="docutils literal notranslate"><span class="pre">tasks</span></code> array and that each task has the required fields and
+allowed enum values.</p>
+<pre  class="mermaid">
+        sequenceDiagram
+  participant Page as Tasks page
+  participant Server as getTasks()
+  participant Local as tasks.local.json
+  participant Schema as Task schema
+  participant UI as Task cards
+
+  Page-&gt;&gt;Server: Request task manifest
+  Server-&gt;&gt;Local: Read private local JSON
+  alt file missing
+    Server-&gt;&gt;Local: Create fallback local manifest
+  end
+  Server-&gt;&gt;Schema: Validate parsed manifest
+  alt valid
+    Schema--&gt;&gt;Server: Normalized tasks
+  else invalid or parse error
+    Schema--&gt;&gt;Server: Validation errors
+    Server-&gt;&gt;Server: Use built-in fallback
+  end
+  Server--&gt;&gt;Page: TaskManifest
+  Page--&gt;&gt;UI: Render lanes, cards, counts, links
+    </pre><p>Valid tasks are normalized so missing <code class="docutils literal notranslate"><span class="pre">links</span></code> becomes an empty array. If the
+file is missing, <code class="docutils literal notranslate"><span class="pre">getTasks()</span></code> creates a local fallback manifest. If parsing or
+validation fails, the server logs a short warning and returns the built-in
+fallback task instead of exposing task details or breaking the Tasks page.</p>
+<p>The page separates completed work before rendering. Tasks with <code class="docutils literal notranslate"><span class="pre">status:</span>
+<span class="pre">done</span></code> are excluded from the active lane sections even if their <code class="docutils literal notranslate"><span class="pre">lane</span></code> still
+points at <code class="docutils literal notranslate"><span class="pre">now</span></code>, <code class="docutils literal notranslate"><span class="pre">next</span></code>, <code class="docutils literal notranslate"><span class="pre">later</span></code>, or <code class="docutils literal notranslate"><span class="pre">ideas</span></code>. Completed tasks render at
+the end of the page inside a native collapsible <code class="docutils literal notranslate"><span class="pre">Done</span></code> section so old work is
+available for review without crowding the active board.</p>
+</section>
+<section id="important-details">
+<h3>Important Details<a class="headerlink" href="#important-details" title="Link to this heading">¶</a></h3>
+<p>Task files use this root shape:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;tasks&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Each task supports:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: stable unique task identifier.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">title</span></code>: display title.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">status</span></code>: one of <code class="docutils literal notranslate"><span class="pre">todo</span></code>, <code class="docutils literal notranslate"><span class="pre">in_progress</span></code>, <code class="docutils literal notranslate"><span class="pre">blocked</span></code>, <code class="docutils literal notranslate"><span class="pre">done</span></code>,
+<code class="docutils literal notranslate"><span class="pre">idea</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">priority</span></code>: one of <code class="docutils literal notranslate"><span class="pre">critical</span></code>, <code class="docutils literal notranslate"><span class="pre">high</span></code>, <code class="docutils literal notranslate"><span class="pre">medium</span></code>, <code class="docutils literal notranslate"><span class="pre">low</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">area</span></code>: one of <code class="docutils literal notranslate"><span class="pre">docs</span></code>, <code class="docutils literal notranslate"><span class="pre">agents</span></code>, <code class="docutils literal notranslate"><span class="pre">design</span></code>, <code class="docutils literal notranslate"><span class="pre">frontend</span></code>, <code class="docutils literal notranslate"><span class="pre">backend</span></code>,
+<code class="docutils literal notranslate"><span class="pre">security</span></code>, <code class="docutils literal notranslate"><span class="pre">operations</span></code>, <code class="docutils literal notranslate"><span class="pre">research</span></code>, <code class="docutils literal notranslate"><span class="pre">automation</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lane</span></code>: one of <code class="docutils literal notranslate"><span class="pre">now</span></code>, <code class="docutils literal notranslate"><span class="pre">next</span></code>, <code class="docutils literal notranslate"><span class="pre">later</span></code>, <code class="docutils literal notranslate"><span class="pre">ideas</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">summary</span></code>: short task context for the card.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nextAction</span></code>: the next concrete upkeep or implementation step.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">links</span></code>: optional array of <code class="docutils literal notranslate"><span class="pre">label</span></code> and <code class="docutils literal notranslate"><span class="pre">href</span></code> objects.</p></li>
+</ul>
+<p>Run the task config check after changing either task file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>run<span class="w"> </span>tasks:check
+</pre></div>
+</div>
+</section>
+<section id="maintenance-notes">
+<h3>Maintenance Notes<a class="headerlink" href="#maintenance-notes" title="Link to this heading">¶</a></h3>
+<p>Keep real planning data, private links, and sensitive context only in
+<code class="docutils literal notranslate"><span class="pre">config/tasks.local.json</span></code>. Keep <code class="docutils literal notranslate"><span class="pre">config/tasks.example.json</span></code> sanitized and
+small enough to explain the shape.</p>
+<p>During upkeep, keep current work in <code class="docutils literal notranslate"><span class="pre">now</span></code>, move completed items to <code class="docutils literal notranslate"><span class="pre">done</span></code>,
+keep <code class="docutils literal notranslate"><span class="pre">nextAction</span></code> concrete after each session, and run
+<code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">run</span> <span class="pre">tasks:check</span></code> before relying on the board.</p>
+</section>
+</section>
+<section id="validation">
+<h2>Validation<a class="headerlink" href="#validation" title="Link to this heading">¶</a></h2>
+<div class="need_container docutils container" id="SNCB-2be0114a">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_test docutils align-default" id="TEST_TASKBOARD_CONFIG_SCHEMA_CHECK">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Validation</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Task config schema check validates task files</span></span></span></strong><span> <span class="needs-id"><a class="reference internal" href="#TEST_TASKBOARD_CONFIG_SCHEMA_CHECK" title="TEST_TASKBOARD_CONFIG_SCHEMA_CHECK">TEST_TASKBOARD_CONFIG_SCHEMA_CHECK</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">active</span></span></div>
+<div class="line"><span class="needs_owner"><span class="needs_label">owner: </span><span class="needs_data">Diogo</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">links outgoing: <span class="links"><span><a class="reference internal" href="#REQ_TASKBOARD_PUBLIC_SCHEMA_EXAMPLE" title="TEST_TASKBOARD_CONFIG_SCHEMA_CHECK">REQ_TASKBOARD_PUBLIC_SCHEMA_EXAMPLE [Functional Requirement]</a>, <a class="reference internal" href="#REQ_TASKBOARD_TASK_CONFIG_VALIDATED" title="TEST_TASKBOARD_CONFIG_SCHEMA_CHECK">REQ_TASKBOARD_TASK_CONFIG_VALIDATED [Functional Requirement]</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">run</span> <span class="pre">tasks:check</span></code> should validate <code class="docutils literal notranslate"><span class="pre">config/tasks.example.json</span></code> and
+the optional private <code class="docutils literal notranslate"><span class="pre">config/tasks.local.json</span></code> without printing private
+task contents.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-111048c8">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_test docutils align-default" id="TEST_TASKBOARD_BUILD_VALIDATION">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Validation</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Task board build validation</span></span></span></strong><span> <span class="needs-id"><a class="reference internal" href="#TEST_TASKBOARD_BUILD_VALIDATION" title="TEST_TASKBOARD_BUILD_VALIDATION">TEST_TASKBOARD_BUILD_VALIDATION</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">active</span></span></div>
+<div class="line"><span class="needs_owner"><span class="needs_label">owner: </span><span class="needs_data">Diogo</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">links outgoing: <span class="links"><span><a class="reference internal" href="#REQ_TASKBOARD_LOCAL_TASKS_DISPLAYED" title="TEST_TASKBOARD_BUILD_VALIDATION">REQ_TASKBOARD_LOCAL_TASKS_DISPLAYED [Functional Requirement]</a>, <a class="reference internal" href="#REQ_TASKBOARD_SAFE_FALLBACK" title="TEST_TASKBOARD_BUILD_VALIDATION">REQ_TASKBOARD_SAFE_FALLBACK [Functional Requirement]</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">run</span> <span class="pre">build</span></code> should compile the Tasks page while preserving the
+existing <code class="docutils literal notranslate"><span class="pre">TaskManifest</span></code> response shape and safe fallback behavior.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-249c824a">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_test docutils align-default" id="TEST_TASKBOARD_UI_FIXTURE_RENDER">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Validation</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Task board UI renders validated fixture data</span></span></span></strong><span> <span class="needs-id"><a class="reference internal" href="#TEST_TASKBOARD_UI_FIXTURE_RENDER" title="TEST_TASKBOARD_UI_FIXTURE_RENDER">TEST_TASKBOARD_UI_FIXTURE_RENDER</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">active</span></span></div>
+<div class="line"><span class="needs_owner"><span class="needs_label">owner: </span><span class="needs_data">Diogo</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">links outgoing: <span class="links"><span><a class="reference internal" href="#REQ_TASKBOARD_LOCAL_TASKS_DISPLAYED" title="TEST_TASKBOARD_UI_FIXTURE_RENDER">REQ_TASKBOARD_LOCAL_TASKS_DISPLAYED [Functional Requirement]</a>, <a class="reference internal" href="#REQ_TASKBOARD_TASK_CONFIG_VALIDATED" title="TEST_TASKBOARD_UI_FIXTURE_RENDER">REQ_TASKBOARD_TASK_CONFIG_VALIDATED [Functional Requirement]</a>, <a class="reference internal" href="#REQ_TASKBOARD_DONE_ARCHIVE" title="TEST_TASKBOARD_UI_FIXTURE_RENDER">REQ_TASKBOARD_DONE_ARCHIVE [Functional Requirement]</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><code class="docutils literal notranslate"><span class="pre">npx</span> <span class="pre">playwright</span> <span class="pre">test</span> <span class="pre">tests/ui/task-board.spec.ts</span> <span class="pre">--project=desktop</span></code> should
+render the Tasks page from deterministic E2E fixture data and verify lane
+content, counts, statuses, next actions, task links, and the collapsible
+<code class="docutils literal notranslate"><span class="pre">Done</span></code> archive behavior.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="need_container docutils container" id="SNCB-3c2ceba1">
+<table class="need needs_grid_simple needs_layout_clean needs_style_none needs_type_test docutils align-default" id="TEST_TASKBOARD_DOCS_BUILD">
+<tbody>
+<tr class="need head row-odd"><td class="need head"><div class="needs_head line-block">
+<div class="line"><span><span class="needs_type_name"><span class="needs_data">Validation</span></span>: </span><strong><span><span class="needs_title"><span class="needs_data">Task board documentation builds</span></span></span></strong><span> <span class="needs-id"><a class="reference internal" href="#TEST_TASKBOARD_DOCS_BUILD" title="TEST_TASKBOARD_DOCS_BUILD">TEST_TASKBOARD_DOCS_BUILD</a></span>  <span class="needs needs_collapse" id="target__show__meta"><span class="needs collapsed"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="8 12 12 16 16 12"></polyline><line x1="12" y1="8" x2="12" y2="16"></line></svg></span><span class="needs visible collapse_is_hidden"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right-circle"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg></span></span> </span></div>
+</div>
+</td>
+</tr>
+<tr class="need meta row-even"><td class="need meta"><div class="needs_meta line-block">
+<div class="line"><span><span><div class="line"><span class="needs_status"><span class="needs_label">status: </span><span class="needs_data">active</span></span></div>
+<div class="line"><span class="needs_owner"><span class="needs_label">owner: </span><span class="needs_data">Diogo</span></span></div>
+</span></span></div>
+<div class="line"><span><div class="line">links outgoing: <span class="links"><span><a class="reference internal" href="#REQ_TASKBOARD_PUBLIC_SCHEMA_EXAMPLE" title="TEST_TASKBOARD_DOCS_BUILD">REQ_TASKBOARD_PUBLIC_SCHEMA_EXAMPLE [Functional Requirement]</a></span></span></div>
+</span></div>
+</div>
+</td>
+</tr>
+<tr class="need content row-odd"><td class="need content" colspan="1"><p><code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">run</span> <span class="pre">docs:build</span></code> should render the Task Board feature page, included
+diagrams, and linked traceability items.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="../../../deployment.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Deployment</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="../team-roster/index.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Team Roster</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2026, Diogo Brandao
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Task Board</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#user-scenario">User Scenario</a></li>
+<li><a class="reference internal" href="#use-case">Use Case</a></li>
+<li><a class="reference internal" href="#functional-requirements">Functional Requirements</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#architecture">Architecture</a><ul>
+<li><a class="reference internal" href="#static-structure">Static Structure</a></li>
+<li><a class="reference internal" href="#sequence">Sequence</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#implementation">Implementation</a><ul>
+<li><a class="reference internal" href="#implementation-overview">Implementation Overview</a></li>
+<li><a class="reference internal" href="#code-ownership">Code Ownership</a></li>
+<li><a class="reference internal" href="#main-implementation-flow">Main Implementation Flow</a></li>
+<li><a class="reference internal" href="#important-details">Important Details</a></li>
+<li><a class="reference internal" href="#maintenance-notes">Maintenance Notes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#validation">Validation</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../../../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../../../_static/sphinx-data-viewer/jsonview.bundle.js?v=18cd53c5"></script>
+    <script src="../../../_static/sphinx-data-viewer/jsonview_loader.js?v=f7ff7e7d"></script>
+    <script src="../../../_static/sphinx-needs/libs/html/datatables.min.js?v=8a4aee21"></script>
+    <script src="../../../_static/sphinx-needs/libs/html/datatables_loader.js?v=a2cae175"></script>
+    <script src="../../../_static/sphinx-needs/libs/html/sphinx_needs_collapse.js?v=dca66431"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+    <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.12.1/dist/mermaid.esm.min.mjs";
+
+
+
+
+
+const initStyles = () => {
+    const defaultStyle = document.createElement('style');
+    defaultStyle.textContent = `pre.mermaid {
+    /* Same as .mermaid-container > pre */
+    display: block;
+    width: 100%;
+}
+
+pre.mermaid > svg {
+    /* Same as .mermaid-container > pre > svg */
+    height: 500px;
+    width: 100%;
+    max-width: 100% !important;
+}`;
+    document.head.appendChild(defaultStyle);
+
+    const fullscreenStyle = document.createElement('style');
+    fullscreenStyle.textContent = `.mermaid-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.mermaid-container > pre {
+    display: block;
+    width: 100%;
+}
+
+.mermaid-container > pre > svg {
+    height: 500px;
+    width: 100%;
+    max-width: 100% !important;
+}
+
+.mermaid-fullscreen-btn {
+    width: 28px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    line-height: 1;
+    padding: 0;
+    color: #333;
+}
+
+.mermaid-fullscreen-btn:hover {
+    opacity: 100% !important;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
+}
+
+.mermaid-fullscreen-btn.dark-theme {
+    background: rgba(50, 50, 50, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #e0e0e0;
+}
+
+.mermaid-fullscreen-btn.dark-theme:hover {
+    background: rgba(60, 60, 60, 1);
+    box-shadow: 0 3px 10px rgba(255, 255, 255, 0.2);
+}
+
+.mermaid-fullscreen-modal {
+    display: none;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 95vw;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.98);
+    z-index: 9999;
+    padding: 20px;
+    overflow: auto;
+}
+
+.mermaid-fullscreen-modal.dark-theme {
+    background: rgba(0, 0, 0, 0.98);
+}
+
+.mermaid-fullscreen-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen {
+    position: relative;
+    width: 95vw;
+    height: 90vh;
+    max-width: 95vw;
+    max-height: 90vh;
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen.dark-theme {
+    background: #1a1a1a;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+}
+
+.mermaid-container-fullscreen pre.mermaid {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mermaid-container-fullscreen .mermaid svg {
+    height: 100% !important;
+    width: 100% !important;
+    cursor: grab;
+}
+
+.mermaid-fullscreen-close {
+    position: fixed !important;
+    top: 20px !important;
+    right: 20px !important;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s;
+    font-size: 24px;
+    line-height: 1;
+    color: #333;
+}
+
+.mermaid-fullscreen-close:hover {
+    background: white;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    transform: scale(1.1);
+}
+
+.mermaid-fullscreen-close.dark-theme {
+    background: rgba(50, 50, 50, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #e0e0e0;
+}
+
+.mermaid-fullscreen-close.dark-theme:hover {
+    background: rgba(60, 60, 60, 1);
+    box-shadow: 0 6px 16px rgba(255, 255, 255, 0.2);
+}
+
+.mermaid-fullscreen-modal .mermaid-fullscreen-btn {
+    display: none !important;
+}`;
+    document.head.appendChild(fullscreenStyle);
+}
+
+// Detect if page has dark background
+const isDarkTheme = () => {
+    // We use a set of heuristics:
+    // 1. Check for common dark mode classes or attributes
+    // 2. Check computed background color brightness
+    if (document.documentElement.classList.contains('dark') ||
+        document.documentElement.getAttribute('data-theme') === 'dark' ||
+        document.body.classList.contains('dark') ||
+        document.body.getAttribute('data-theme') === 'dark') {
+        // console.log("Dark theme detected via class/attribute");
+        return true;
+    }
+    if (document.documentElement.classList.contains('light') ||
+        document.documentElement.getAttribute('data-theme') === 'light' ||
+        document.body.classList.contains('light') ||
+        document.body.getAttribute('data-theme') === 'light') {
+        // console.log("Light theme detected via class/attribute");
+        return false;
+    }
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        // console.log("Dark theme detected via prefers-color-scheme");
+        return true;
+    }
+    const bgColor = window.getComputedStyle(document.body).backgroundColor;
+    const match = bgColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)/);
+    if (match) {
+        const r = parseInt(match[1]);
+        const g = parseInt(match[2]);
+        const b = parseInt(match[3]);
+        const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+        // console.log("Background color brightness:", brightness);
+        return brightness < 128;
+    }
+    // console.log("No dark or light theme detected, defaulting to light theme");
+    return false;
+};
+
+let darkTheme = isDarkTheme();
+let modal = null;
+let modalContent = null;
+let previousScrollOffset = [window.scrollX, window.scrollY];
+
+const runMermaid = async (rerun) => {
+    console.log("Running mermaid diagrams, rerun =", rerun);
+    // clear all existing mermaid charts
+    let all_mermaids = document.querySelectorAll(".mermaid");
+
+    if (rerun) {
+        all_mermaids.forEach((el) => {
+            if(!el.hasAttribute("data-original-code")) {
+                // store original code
+                // console.log(`Storing original code for first run: `, el.innerHTML);
+                el.setAttribute('data-original-code', el.innerHTML);
+            }
+            if(el.getAttribute("data-processed") === "true") {
+                // remove and restore original
+                el.removeAttribute("data-processed");
+                // console.log(`Restoring original code for re-run: `, el.getAttribute('data-original-code'));
+                el.innerHTML = el.getAttribute('data-original-code');
+            } else {
+                // store original code
+                // console.log(`Storing original code for re-run: `, el.innerHTML);
+                el.setAttribute('data-original-code', el.innerHTML);
+            }
+        });
+        await mermaid.run();
+    }
+
+    all_mermaids = document.querySelectorAll(".mermaid");
+    const mermaids_processed = document.querySelectorAll(".mermaid[data-processed='true']");
+
+    if ("False" === "True") {
+        const mermaids_to_add_zoom = -1 === -1 ? all_mermaids.length : -1;
+        if(mermaids_to_add_zoom > 0) {
+            var svgs = d3.selectAll("");
+            if(all_mermaids.length !== mermaids_processed.length) {
+                setTimeout(() => runMermaid(false), 200);
+                return;
+            } else if(svgs.size() !== mermaids_to_add_zoom) {
+                setTimeout(() => runMermaid(false), 200);
+                return;
+            } else {
+                svgs.each(function() {
+                    var svg = d3.select(this);
+                    svg.html("<g class='wrapper'>" + svg.html() + "</g>");
+                    var inner = svg.select("g");
+                    var zoom = d3.zoom().on("zoom", function(event) {
+                        inner.attr("transform", event.transform);
+                    });
+                    svg.call(zoom);
+                });
+            }
+        }
+    } else if(all_mermaids.length !== mermaids_processed.length) {
+        // Wait for mermaid to process all diagrams
+        setTimeout(() => runMermaid(false), 200);
+        return;
+    }
+
+    // Stop here if not adding fullscreen capability
+    if ("True" !== "True") return;
+
+    if (modal !== null ) {
+        // Destroy existing modal
+        modal.remove();
+        modal = null;
+        modalContent = null;
+    }
+
+    modal = document.createElement('div');
+    modal.className = 'mermaid-fullscreen-modal' + (darkTheme ? ' dark-theme' : '');
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.setAttribute('aria-label', 'Fullscreen diagram viewer');
+    modal.innerHTML = `
+        <button class="mermaid-fullscreen-close${darkTheme ? ' dark-theme' : ''}" aria-label="Close fullscreen">✕</button>
+        <div class="mermaid-container-fullscreen${darkTheme ? ' dark-theme' : ''}"></div>
+    `;
+    document.body.appendChild(modal);
+
+    modalContent = modal.querySelector('.mermaid-container-fullscreen');
+    const closeBtn = modal.querySelector('.mermaid-fullscreen-close');
+
+    const closeModal = () => {
+        modal.classList.remove('active');
+        modalContent.innerHTML = '';
+        document.body.style.overflow = ''
+        window.scrollTo({left: previousScrollOffset[0], top: previousScrollOffset[1], behavior: 'instant'});
+    };
+
+    closeBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
+
+    document.querySelectorAll('.mermaid').forEach((mermaidDiv) => {
+        if (mermaidDiv.parentNode.classList.contains('mermaid-container') ||
+            mermaidDiv.closest('.mermaid-fullscreen-modal')) {
+            // Already processed, adjust button class if needed
+            const existingBtn = mermaidDiv.parentNode.querySelector('.mermaid-fullscreen-btn');
+            if (existingBtn) {
+                existingBtn.className = 'mermaid-fullscreen-btn' + (darkTheme ? ' dark-theme' : '');
+            }
+            return;
+        }
+
+        const container = document.createElement('div');
+        container.className = 'mermaid-container';
+        mermaidDiv.parentNode.insertBefore(container, mermaidDiv);
+        container.appendChild(mermaidDiv);
+
+        const fullscreenBtn = document.createElement('button');
+        fullscreenBtn.className = 'mermaid-fullscreen-btn' + (darkTheme ? ' dark-theme' : '');
+        fullscreenBtn.setAttribute('aria-label', 'View diagram in fullscreen');
+        fullscreenBtn.textContent = '⛶';
+        fullscreenBtn.style.opacity = '50%';
+
+        // Calculate dynamic position based on diagram's margin and padding
+        const diagramStyle = window.getComputedStyle(mermaidDiv);
+        const marginTop = parseFloat(diagramStyle.marginTop) || 0;
+        const marginRight = parseFloat(diagramStyle.marginRight) || 0;
+        const paddingTop = parseFloat(diagramStyle.paddingTop) || 0;
+        const paddingRight = parseFloat(diagramStyle.paddingRight) || 0;
+        fullscreenBtn.style.top = `${marginTop + paddingTop + 4}px`;
+        fullscreenBtn.style.right = `${marginRight + paddingRight + 4}px`;
+
+        fullscreenBtn.addEventListener('click', () => {
+            previousScrollOffset = [window.scroll, window.scrollY];
+            const clone = mermaidDiv.cloneNode(true);
+            modalContent.innerHTML = '';
+            modalContent.appendChild(clone);
+
+            const svg = clone.querySelector('svg');
+            if (svg) {
+                svg.removeAttribute('width');
+                svg.removeAttribute('height');
+                svg.style.width = '100%';
+                svg.style.height = 'auto';
+                svg.style.maxWidth = '100%';
+                svg.style.sdisplay = 'block';
+
+                if ("False" === "True") {
+                    setTimeout(() => {
+                        const g = svg.querySelector('g');
+                        if (g) {
+                            var svgD3 = d3.select(svg);
+                            svgD3.html("<g class='wrapper'>" + svgD3.html() + "</g>");
+                            var inner = svgD3.select("g");
+                            var zoom = d3.zoom().on("zoom", function(event) {
+                                inner.attr("transform", event.transform);
+                            });
+                            svgD3.call(zoom);
+                        }
+                    }, 100);
+                }
+            }
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        container.appendChild(fullscreenBtn);
+    });
+};
+
+const load = async () => {
+    initStyles();
+
+    await runMermaid(true);
+
+    const reRunIfThemeChanges = async () => {
+        const newDarkTheme = isDarkTheme();
+        if (newDarkTheme !== darkTheme) {
+            darkTheme = newDarkTheme;
+            console.log("Theme change detected, re-running mermaid with", darkTheme ? "dark" : "default", "theme");
+            await mermaid.initialize(
+                {...JSON.parse(
+                    `{"startOnLoad": false}`
+                ),
+                ...{ darkMode: darkTheme, theme: darkTheme ? 'dark' : 'default' },
+                }
+            );
+            await runMermaid(true);
+        }
+    };
+
+    // Update theme classes when theme changes
+    const themeObserver = new MutationObserver(reRunIfThemeChanges);
+    themeObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class', 'style', 'data-theme']
+    });
+    themeObserver.observe(document.body, {
+        attributes: true,
+        attributeFilter: ['class', 'style', 'data-theme']
+    });
+};
+
+
+
+
+
+console.log("Initializing mermaid with", darkTheme ? "dark" : "default", "theme");
+mermaid.initialize(
+    {...JSON.parse(
+        `{"startOnLoad": false}`
+    ),
+    ...{ darkMode: darkTheme, theme: darkTheme ? 'dark' : 'default' },
+    }
+);
+
+window.addEventListener("load", load);
+window.runMermaid = runMermaid;</script>
+    </body>
+</html>
