@@ -1,6 +1,6 @@
 import { LockKeyhole, RadioTower, ShieldCheck } from "lucide-react";
 import { redirect } from "next/navigation";
-import { getCommandSession } from "@/auth";
+import { e2eEmail, getCommandSession } from "@/auth";
 import { signInWithE2ETest, signInWithGoogle } from "@/features/security/google-authentication/actions";
 import { Panel, SectionLabel } from "@/components/ui/panel";
 
@@ -81,8 +81,17 @@ export default async function LoginPage({
           </form>
 
           {e2eAuthEnabled ? (
-            <form action={signInWithE2ETest}>
+            <form action={signInWithE2ETest} className="space-y-3">
               <input type="hidden" name="callbackUrl" value={callbackUrl} />
+              <label className="block text-xs font-bold uppercase tracking-[0.16em] text-slate-300">
+                Test account email
+                <input
+                  name="email"
+                  type="email"
+                  defaultValue={e2eEmail}
+                  className="mt-2 w-full rounded border border-bridge-line bg-black/30 px-3 py-2 text-sm normal-case tracking-normal text-white outline-none transition focus:border-bridge-mint"
+                />
+              </label>
               <button
                 type="submit"
                 className="flex w-full items-center justify-center gap-3 rounded-md border border-bridge-mint bg-bridge-mint/10 px-4 py-4 text-sm font-black uppercase tracking-[0.2em] text-white transition hover:bg-bridge-mint/20"

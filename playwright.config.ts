@@ -18,8 +18,10 @@ export default defineConfig({
     reuseExistingServer: !process.env.CI,
     env: {
       E2E_TEST_AUTH: "true",
+      E2E_AUTH_ALLOWED_EMAILS: "e2e@shogun.local",
       E2E_UI_FIXTURES: "true",
       AUTH_SECRET: "e2e-test-auth-secret-with-enough-entropy",
+      AUTH_URL: "http://127.0.0.1:3000",
       AUTH_ALLOWED_EMAILS: "e2e@shogun.local",
       AUTH_GOOGLE_ID: "e2e-google-client-id",
       AUTH_GOOGLE_SECRET: "e2e-google-client-secret"

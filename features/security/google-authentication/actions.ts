@@ -1,8 +1,8 @@
 "use server";
 
-import { cookies } from "next/headers";
+import { AuthError } from "next-auth";
 import { redirect } from "next/navigation";
-import { e2eAuthCookieName, signIn, signOut } from "@/auth";
+import { e2eEmail, signIn, signOut } from "@/auth";
 
 function safeCallbackUrl(value: FormDataEntryValue | null) {
   const callbackUrl = String(value ?? "/");
@@ -18,21 +18,21 @@ export async function signInWithE2ETest(formData: FormData) {
     throw new Error("E2E test auth is disabled");
   }
 
-  const cookieStore = await cookies();
-  cookieStore.set(e2eAuthCookieName, "true", {
-    httpOnly: true,
-    sameSite: "lax",
-    secure: false,
-    path: "/"
-  });
-  redirect(safeCallbackUrl(formData.get("callbackUrl")));
+  try {
+    await signIn("credentials", {
+      email: String(formData.get("email") ?? e2eEmail),
+      redirectTo: safeCallbackUrl(formData.get("callbackUrl"))
+    });
+  } catch (error) {
+    if (error instanceof AuthError) {
+      const errorType = error.type === "AccessDenied" ? "AccessDenied" : "Configuration";
+      redirect(`/login?error=${errorType}`);
+    }
+
+    throw error;
+  }
 }
 
 export async function signOutOfGoogle() {
-  if (process.env.E2E_TEST_AUTH === "true") {
-    const cookieStore = await cookies();
-    cookieStore.delete(e2eAuthCookieName);
-  }
-
   await signOut({ redirectTo: "/login" });
 }
