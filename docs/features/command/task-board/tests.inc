@@ -24,11 +24,12 @@ Validation
    :id: TEST_TASKBOARD_UI_FIXTURE_RENDER
    :status: active
    :owner: Diogo
-   :links: REQ_TASKBOARD_LOCAL_TASKS_DISPLAYED, REQ_TASKBOARD_TASK_CONFIG_VALIDATED
+   :links: REQ_TASKBOARD_LOCAL_TASKS_DISPLAYED, REQ_TASKBOARD_TASK_CONFIG_VALIDATED, REQ_TASKBOARD_DONE_ARCHIVE
 
    ``npx playwright test tests/ui/task-board.spec.ts --project=desktop`` should
    render the Tasks page from deterministic E2E fixture data and verify lane
-   content, counts, statuses, next actions, and task links.
+   content, counts, statuses, next actions, task links, and the collapsible
+   ``Done`` archive behavior.
 
 .. test:: Task board documentation builds
    :id: TEST_TASKBOARD_DOCS_BUILD
